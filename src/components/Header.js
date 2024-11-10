@@ -1,6 +1,9 @@
 import React from "react";
-
 class Header extends React.Component {
+  state = {
+    showAccountOptions: false,
+  };
+
   render() {
     return (
       <>
@@ -46,15 +49,41 @@ class Header extends React.Component {
                 className="w-full h-14 rounded-2xl border-black border-solid pl-12 pr-5"
               />
             </div>
-            <button className="w-40 h-14 bg-orange rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
-              <img
-                src={require("../assets/icons/icon_user.png")}
-                alt="User Icon"
-                width={30}
-                height={30}
-              />
-              <span>Tài khoản</span>
-            </button>
+
+            <div className="relative">
+              <button
+                className="w-40 h-14 bg-orange rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2"
+                onClick={() =>
+                  this.setState({
+                    showAccountOptions: !this.state.showAccountOptions,
+                  })
+                }
+              >
+                <img
+                  src={require("../assets/icons/icon_user.png")}
+                  alt="User Icon"
+                  width={30}
+                  height={30}
+                />
+                <span>Tài khoản</span>
+              </button>
+              {this.state.showAccountOptions && (
+                <div className="absolute top-full mt-2 w-40 bg-white shadow-lg rounded-lg">
+                  <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                    Tài khoản của tôi
+                  </button>
+                  <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                    Đơn hàng của tôi
+                  </button>
+                  <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                    Đăng nhập
+                  </button>
+                  <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                    Đăng ký
+                  </button>
+                </div>
+              )}
+            </div>
             <button className="w-40 h-14 bg-orange rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
               <img
                 src={require("../assets/icons/icon_cart.png")}
@@ -66,6 +95,12 @@ class Header extends React.Component {
             </button>
           </div>
         </header>
+        {this.state.showAccountOptions && (
+          <div
+            className="fixed inset-0"
+            onClick={() => this.setState({ showAccountOptions: false })}
+          ></div>
+        )}
       </>
     );
   }

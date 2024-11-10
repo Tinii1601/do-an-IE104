@@ -1,0 +1,8 @@
+@tailwind base;
+
+@layer base {
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color: #fff8f0;
+  }
+}

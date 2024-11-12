@@ -7,7 +7,7 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <div className="bg-green flex justify-center items-center space-x-4">
+        <div className="bg-xanh flex justify-center items-center space-x-4">
           <p className="text-white p-4 text-2xl">
             Hotline: 1900xxxx Email: hotro@nhasach.com
           </p>
@@ -31,7 +31,7 @@ class Header extends React.Component {
           ></img>
         </div>
         <div className="flex items-center justify-between mt-5 mx-5">
-          <div className="w-52 h-14 rounded-2xl bg-red mx-5 text-white text-center">
+          <div className="w-52 h-14 rounded-2xl bg-do mx-5 text-white text-center">
             Logo
           </div>
           <div className="relative w-2/4">
@@ -51,7 +51,7 @@ class Header extends React.Component {
 
           <div className="relative">
             <button
-              className="w-40 h-14 bg-orange rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2"
+              className="w-40 h-14 bg-cam rounded-2xl text-white hover:bg text-2xl font-bold flex items-center justify-center space-x-2"
               onClick={() =>
                 this.setState({
                   showAccountOptions: !this.state.showAccountOptions,
@@ -83,7 +83,7 @@ class Header extends React.Component {
               </div>
             )}
           </div>
-          <button className="w-40 h-14 bg-orange rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
+          <button className="w-40 h-14 bg-cam rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
             <img
               src={require("../assets/icons/icon_cart.png")}
               alt="Cart Icon"

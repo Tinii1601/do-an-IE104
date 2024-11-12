@@ -14,20 +14,20 @@ class Header extends React.Component {
           <img
             src={require("../assets/icons/facebook.png")}
             alt="Facebook Icon"
-            width={40}
-            height={40}
+            width="40px"
+            height="40px"
           ></img>
           <img
             src={require("../assets/icons/messenger.png")}
             alt="Messenger Icon"
-            width={40}
-            height={40}
+            width="40px"
+            height="40px"
           ></img>
           <img
             src={require("../assets/icons/zalo.jpeg")}
             alt="Zalo Icon"
-            width={40}
-            height={40}
+            width="40px"
+            height="40px"
           ></img>
         </div>
         <div className="flex items-center justify-between mt-5 mx-5">
@@ -39,8 +39,8 @@ class Header extends React.Component {
               src={require("../assets/icons/icon_search.png")}
               alt="Search Icon"
               className="absolute left-4 top-1/2 transform -translate-y-1/2"
-              width={30}
-              height={30}
+              width="30px"
+              height="30px"
             />
             <input
               type="text"
@@ -51,7 +51,7 @@ class Header extends React.Component {
 
           <div className="relative">
             <button
-              className="w-40 h-14 bg-cam rounded-2xl text-white hover:bg text-2xl font-bold flex items-center justify-center space-x-2"
+              className="w-40 h-14 bg-cam rounded-2xl hover:bg-orange-700 text-white hover:bg text-2xl font-bold flex items-center justify-center space-x-2"
               onClick={() =>
                 this.setState({
                   showAccountOptions: !this.state.showAccountOptions,
@@ -61,8 +61,8 @@ class Header extends React.Component {
               <img
                 src={require("../assets/icons/icon_user.png")}
                 alt="User Icon"
-                width={30}
-                height={30}
+                width="30px"
+                height="30px"
               />
               <span>Tài khoản</span>
             </button>
@@ -83,12 +83,12 @@ class Header extends React.Component {
               </div>
             )}
           </div>
-          <button className="w-40 h-14 bg-cam rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
+          <button className="w-40 h-14 bg-cam hover:bg-orange-700 rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
             <img
               src={require("../assets/icons/icon_cart.png")}
               alt="Cart Icon"
-              width={30}
-              height={30}
+              width="30px"
+              height="30px"
             />
             <span>Giỏ hàng</span>
           </button>

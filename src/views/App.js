@@ -1,16 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Product from "../components/Product";
+import Home_Page from "./Home_Page";
 import "../styles/App.css";
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
-        <Product />
-        <Footer />
+        <Home_Page />
       </>
     );
   }

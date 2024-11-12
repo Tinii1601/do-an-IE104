@@ -4,7 +4,7 @@ class Footer extends React.Component {
   render() {
     return (
       <>
-        <div className="grid grid-cols-3 gap-3 bg-white px-32">
+        <div className="grid grid-cols-3 gap-3 bg-white px-32 py-6">
           <div>
             <p className="font-bold text-2xl">Về chúng tôi</p>
             <p className="pl-4">Giới thiệu về nhà sách</p>

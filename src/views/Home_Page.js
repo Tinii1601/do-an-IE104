@@ -104,7 +104,7 @@ class HomePage extends React.Component {
               </div>
             ))}
           </div>
-          <div className="my-4 grid grid-cols-4 gap-5">
+          <div className="my-4 mx-10 grid grid-cols-4 gap-5">
             <Product />
             <Product />
             <Product />
@@ -129,7 +129,7 @@ class HomePage extends React.Component {
               </div>
             ))}
           </div>
-          <div className="my-4 grid grid-cols-4 gap-5">
+          <div className="my-4 mx-10 grid grid-cols-4 gap-5">
             <Product />
             <Product />
             <Product />

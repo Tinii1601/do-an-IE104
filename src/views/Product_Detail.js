@@ -10,13 +10,10 @@ class ProductDetail extends React.Component {
           <Header />
         </div>
         <div>
-          <div>
-            <img
-              src={require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg")}
-              width="300px"
-            />
-            <div></div>
-          </div>
+          <p>Hai Vạn Dặm Dưới Biển</p>
+          <img
+            src={require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg")}
+          />
         </div>
         <Footer />
       </>

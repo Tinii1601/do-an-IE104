@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  padding: 5%;
+}
+
+.container .content {
+  width: 80%;
+  margin: 5% auto;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+}
+
+.content h3 {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.Nhap {
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 15px;
+}
+
+.Nhap input {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.Nhap div {
+  position: relative;
+}
+
+.NhapMa {
+  padding-top: 10px;
+}
+
+.NhapMa input {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+.NhapMa input[type="text"] {
+  width: 50%;
+  margin: 0 20px;
+  padding: 5px;
+}
+
+.NhapMa input[type="button"] {
+  font-weight: bold;
+  box-shadow: 0 0 5px gray;
+}
+
+.Total {
+  margin-left: 75%;
+}
+
+.Total input[type="submit"] {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0 5px;
+  font-weight: bold;
+  box-shadow: 0 0 5px gray;
+  margin-top: 10px;
+}

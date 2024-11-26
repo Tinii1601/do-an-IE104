@@ -2,16 +2,16 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
-import Login from "./Login";
+import Pay from "./Pay";
 
-import "../styles/App.css";
+// import Login from "./Login";
 
 class App extends React.Component {
   render() {
     return (
       <>
         <Header />
-        <Login />
+        <Pay />
         <Footer />
       </>
     );

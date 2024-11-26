@@ -1,42 +1,97 @@
 .container {
-  margin: 0 auto;
   width: 50%;
-  height: 400px;
-  background-color: greenyellow;
+  height: fit-content;
+  padding: 5% 10%;
+  background-color: white;
+  margin: 5% 10%;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.container > * {
+  max-width: 100%; /* Đảm bảo không phần tử nào tràn quá khung */
+  overflow: hidden; /* Ẩn nội dung thừa nếu có */
+}
+
+.link {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .tab {
   text-decoration: none;
-  background-color: blanchedalmond;
   padding: 12px 40px;
   display: inline-block;
 }
 
+.divForm {
+  padding: 5% 10%;
+  padding-bottom: 0;
+  margin: 0 auto;
+}
+
+#dangky {
+  border: 2px solid black;
+  border-left: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 #dangnhap {
   background-color: rgb(180, 178, 178);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .tab:hover {
   text-decoration: underline;
 }
 
-#Login {
+#Signin {
   display: none;
 }
 
 .Nhap {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  row-gap: 15px;
   margin-bottom: 20px;
   padding: 5px 50px;
 }
 
-.Nhap label {
-  text-align: right;
+/* .Nhap label {
+  text-align: left;
   padding-right: 20px;
+} */
+
+.forgot-password {
+  float: right;
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.Nhap input {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.Nhap > * {
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 .submition {
+  width: 100%;
   text-align: center;
+}
+
+.submition input {
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px gray;
 }

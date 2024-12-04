@@ -1,107 +1,132 @@
-import React from "react";
-class Header extends React.Component {
-  state = {
-    showAccountOptions: false,
-  };
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-  render() {
-    return (
-      <>
-        <div className="bg-xanh flex justify-center items-center space-x-4">
-          <p className="text-white p-4 text-2xl">
-            Hotline: 1900xxxx Email: hotro@nhasach.com
-          </p>
-          <img
-            src={require("../assets/icons/facebook.png")}
-            alt="Facebook Icon"
-            width={40}
-            height={40}
-          ></img>
-          <img
-            src={require("../assets/icons/messenger.png")}
-            alt="Messenger Icon"
-            width={40}
-            height={40}
-          ></img>
-          <img
-            src={require("../assets/icons/zalo.jpeg")}
-            alt="Zalo Icon"
-            width={40}
-            height={40}
-          ></img>
-        </div>
-        <div className="flex items-center justify-between mt-5 mx-5">
-          <div className="w-52 h-14 rounded-2xl bg-do mx-5 text-white text-center">
-            Logo
-          </div>
-          <div className="relative w-2/4">
-            <img
-              src={require("../assets/icons/icon_search.png")}
-              alt="Search Icon"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2"
-              width={30}
-              height={30}
-            />
-            <input
-              type="text"
-              placeholder="Tìm kiếm sản phẩm"
-              className="w-full h-14 rounded-2xl border-black border-solid pl-12 pr-5"
-            />
-          </div>
+const Header = () => {
+  const [showFolderOptions, setShowFolderOptions] = useState(false);
+  const [showAccountOptions, setShowAccountOptions] = useState(false);
 
-          <div className="relative">
-            <button
-              className="w-40 h-14 bg-cam rounded-2xl text-white hover:bg text-2xl font-bold flex items-center justify-center space-x-2"
-              onClick={() =>
-                this.setState({
-                  showAccountOptions: !this.state.showAccountOptions,
-                })
-              }
-            >
-              <img
-                src={require("../assets/icons/icon_user.png")}
-                alt="User Icon"
-                width={30}
-                height={30}
-              />
-              <span>Tài khoản</span>
-            </button>
-            {this.state.showAccountOptions && (
-              <div className="absolute top-full mt-2 w-40 bg-white shadow-lg rounded-lg">
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
-                  Tài khoản của tôi
-                </button>
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
-                  Đơn hàng của tôi
-                </button>
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
-                  Đăng nhập
-                </button>
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-200">
-                  Đăng ký
-                </button>
-              </div>
-            )}
-          </div>
-          <button className="w-40 h-14 bg-cam rounded-2xl text-white text-2xl font-bold flex items-center justify-center space-x-2">
-            <img
-              src={require("../assets/icons/icon_cart.png")}
-              alt="Cart Icon"
-              width={30}
-              height={30}
-            />
-            <span>Giỏ hàng</span>
-          </button>
-        </div>
-        {this.state.showAccountOptions && (
+  const categories = [
+    "Kinh tế",
+    "Văn học",
+    "Kỹ năng sống",
+    "Sách thiếu nhi",
+    "Văn hóa và du lịch",
+  ];
+
+  const accountOptions = [
+    "Thông tin tài khoản",
+    "Quản lý đơn hàng",
+    "Đăng nhập",
+    "Đăng ký",
+  ];
+
+  const renderDropdown = (options, onClickOutside) => (
+    <div className="absolute w-48 bg-white shadow-lg">
+      {options.map((option) => (
+        <Link key={option} to="/product_mix">
           <div
-            className="fixed inset-0"
-            onClick={() => this.setState({ showAccountOptions: false })}
-          ></div>
-        )}
-      </>
-    );
-  }
-}
+            className="text-xl p-2 hover:bg-gray-200 cursor-pointer"
+            onClick={onClickOutside}
+          >
+            {option}
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      {/* Top Bar */}
+      <div className="flex justify-center items-center space-x-4">
+        <div className="mx-5 text-center">
+          <p className="font-bold text-xl">Logo</p>
+        </div>
+        <p className="p-4 text-xl">
+          Hotline: 1900xxxx Email: hotro@nhasach.com
+        </p>
+        {["facebook", "messenger", "zalo"].map((icon) => (
+          <img
+            key={icon}
+            src={require(`../assets/icons/${icon}.png`)}
+            alt={`${icon} Icon`}
+            width="30px"
+          />
+        ))}
+      </div>
+
+      {/* Navigation Bar */}
+      <div className="bg-xanh flex items-center justify-between p-1">
+        {/* Categories Dropdown */}
+        <div className="relative">
+          <div
+            onClick={() => setShowFolderOptions(!showFolderOptions)}
+            className={`ml-4 p-1 text-center cursor-pointer ${
+              showFolderOptions ? "bg-lime-700" : "hover:bg-lime-700"
+            }`}
+          >
+            <p className="font-bold text-xl text-white">
+              Danh mục sản phẩm
+              <span className="pl-1 opacity-75 text-base">
+                {showFolderOptions ? "∧" : "∨"}
+              </span>
+            </p>
+          </div>
+          {showFolderOptions &&
+            renderDropdown(categories, () => setShowFolderOptions(false))}
+        </div>
+
+        {/* Search Bar */}
+        <div className="relative w-1/2">
+          <img
+            src={require("../assets/icons/icon_search.png")}
+            alt="Search Icon"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2"
+            width="30px"
+          />
+          <input
+            type="text"
+            placeholder="Tìm kiếm sản phẩm"
+            className="w-full h-10 rounded-xl pl-12 pr-5"
+          />
+        </div>
+
+        {/* Account Dropdown */}
+        <div className="relative">
+          <div
+            onClick={() => setShowAccountOptions(!showAccountOptions)}
+            className={`ml-4 flex p-1 text-center cursor-pointer ${
+              showAccountOptions ? "bg-lime-700" : "hover:bg-lime-700"
+            }`}
+          >
+            <img
+              src={require("../assets/icons/icon_user.png")}
+              alt="User Icon"
+              width="30px"
+            />
+            <p className="ml-1 font-bold text-xl text-white">
+              Tài khoản
+              <span className="pl-1 opacity-75 text-base">
+                {showAccountOptions ? "∧" : "∨"}
+              </span>
+            </p>
+          </div>
+          {showAccountOptions &&
+            renderDropdown(accountOptions, () => setShowAccountOptions(false))}
+        </div>
+
+        {/* Cart */}
+        <div className="mr-4 p-1 text-center flex hover:bg-lime-700 cursor-pointer">
+          <img
+            src={require("../assets/icons/icon_cart.png")}
+            alt="Cart Icon"
+            width="30px"
+          />
+          <p className="ml-1 font-bold text-xl text-white">Giỏ hàng</p>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Header;

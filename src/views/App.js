@@ -1,17 +1,15 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Product from "../components/Product";
-import Pay from "./Pay";
-
-// import Login from "./Login";
+import Login from "../views/Login";
+import Account from "../components/Account";
 
 class App extends React.Component {
   render() {
     return (
       <>
         <Header />
-        <Pay />
+        <Account />
         <Footer />
       </>
     );

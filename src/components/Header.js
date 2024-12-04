@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="flex justify-center items-center space-x-4">
+      <div className="flex bg-white justify-center items-center space-x-4">
         <div className="mx-5 text-center">
           <p className="font-bold text-xl">Logo</p>
         </div>
@@ -57,6 +57,14 @@ const Header = () => {
 
       {/* Navigation Bar */}
       <div className="bg-xanh flex items-center justify-between p-1">
+        <Link to="/">
+          <img
+            src={require("../assets/icons/home.png")}
+            alt="Home Icon"
+            width="30px"
+            className="ml-5 cursor-pointer"
+          />
+        </Link>
         {/* Categories Dropdown */}
         <div className="relative">
           <div
@@ -116,14 +124,16 @@ const Header = () => {
         </div>
 
         {/* Cart */}
-        <div className="mr-4 p-1 text-center flex hover:bg-lime-700 cursor-pointer">
-          <img
-            src={require("../assets/icons/icon_cart.png")}
-            alt="Cart Icon"
-            width="30px"
-          />
-          <p className="ml-1 font-bold text-xl text-white">Giỏ hàng</p>
-        </div>
+        <Link to="/Cart">
+          <div className="mr-4 p-1 text-center flex hover:bg-lime-700 cursor-pointer">
+            <img
+              src={require("../assets/icons/icon_cart.png")}
+              alt="Cart Icon"
+              width="30px"
+            />
+            <p className="ml-1 font-bold text-xl text-white">Giỏ hàng</p>
+          </div>
+        </Link>
       </div>
     </>
   );

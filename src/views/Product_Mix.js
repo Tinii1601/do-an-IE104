@@ -9,6 +9,13 @@ const ProductMix = () => {
   const formats = ["Bìa cứng", "Bìa mềm"];
   const sortOptions = ["Bán chạy", "Khuyến mãi", "Mới nhất"];
 
+  const product = {
+    image: require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
+    sale: 20,
+    name: "Hai vạn dặm dưới biển",
+    price: 150000,
+  };
+
   const renderFilterSection = (title, options) => (
     <div className="m-5 bg-white p-4">
       <p className="text-xl font-bold">{title}</p>
@@ -53,7 +60,7 @@ const ProductMix = () => {
           {/* Product Grid */}
           <div className="grid grid-cols-4 gap-3">
             {Array.from({ length: 16 }).map((_, index) => (
-              <Product key={index} />
+              <Product key={index} product={product} />
             ))}
           </div>
         </div>

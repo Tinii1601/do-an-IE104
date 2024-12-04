@@ -110,7 +110,9 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Header />
+      <div className="relative z-20">
+        <Header />
+      </div>
       <div className="my-5 mx-10 h-auto bg-white p-5">
         <p className="text-2xl font-bold ml-5 my-4">Hai Vạn Dặm Dưới Biển</p>
         <div className="flex">

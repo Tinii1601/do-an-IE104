@@ -3,6 +3,7 @@ import HomePage from "./Home_Page";
 import ProductMix from "./Product_Mix";
 import ProductDetail from "./Product_Detail";
 import Cart from "./Cart";
+import Account from "../components/Account";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "../styles/App.css";
 

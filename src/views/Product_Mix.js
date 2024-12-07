@@ -10,9 +10,9 @@ const ProductMix = () => {
   const sortOptions = ["Bán chạy", "Khuyến mãi", "Mới nhất"];
 
   const product = {
-    image: require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
+    image: require("../assets/images/Van_hoc/lu-tre-duong-tau.jpg"),
     sale: 20,
-    name: "Hai vạn dặm dưới biển",
+    name: "Lũ trẻ đường tàu",
     price: 150000,
   };
 

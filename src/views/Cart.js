@@ -6,16 +6,16 @@ const Cart = () => {
   const [cart, setCart] = useState([
     {
       id: 1,
-      image: require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
-      name: "Hai vạn dặm dưới biển",
+      image: require("../assets/images/Van_hoc/lu-tre-duong-tau.jpg"),
+      name: "Lũ trẻ đường tàu",
       price: 150000,
       quantity: 1,
       selected: false,
     },
     {
       id: 2,
-      image: require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
-      name: "Hai vạn dặm dưới biển",
+      image: require("../assets/images/Van_hoc/lu-tre-duong-tau.jpg"),
+      name: "Lũ trẻ đường tàu",
       price: 150000,
       quantity: 1,
       selected: false,

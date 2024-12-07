@@ -3,42 +3,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
 
-// Các mảng sản phẩm
-let listProduct_vh = [
-  {
-    image: require("../assets/images/thoi-tho-au-song-ngu.jpg"),
-    sale: 10,
-    name: "Thời thơ ấu",
-    price: 100000,
-  },
-  {
-    image: require("../assets/images/nhung-tam-long-cao-ca-song-ngu.jpg"),
-    sale: 15,
-    name: "Những tấm lòng cao cả",
-    price: 120000,
-  },
-  {
-    image: require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
-    sale: 20,
-    name: "Hai vạn dặm dưới biển",
-    price: 150000,
-  },
-  {
-    image: require("../assets/images/lau-dai-than-bi.jpg"),
-    sale: 5,
-    name: "Lâu đài thần bí",
-    price: 80000,
-  },
-];
-
 // Các mảng sản phẩm khác (kt, kns, stn, vh_dl) tương tự như trên.
 
 const categories = [
-  { key: "vh", name: "Văn học", products: listProduct_vh },
-  { key: "kt", name: "Kinh tế", products: listProduct_vh },
-  { key: "kns", name: "Kỹ năng sống", products: listProduct_vh },
-  { key: "stn", name: "Sách thiếu nhi", products: listProduct_vh },
-  { key: "vh_dl", name: "Văn hóa - Du lịch", products: listProduct_vh },
+  { key: "vh", name: "Văn học", component: <Product /> },
+  { key: "kt", name: "Kinh tế", component: <Product /> },
+  { key: "kns", name: "Kỹ năng sống", component: <Product /> },
+  { key: "stn", name: "Sách thiếu nhi", component: <Product /> },
+  { key: "vh_dl", name: "Văn hóa - Du lịch", component: <Product /> },
 ];
 
 const HomePage = () => {
@@ -47,12 +19,12 @@ const HomePage = () => {
   const [activeCategoryNew, setActiveCategoryNew] = useState("kt");
 
   const banners = [
-    require("../assets/images/Banner1.jpg"),
-    require("../assets/images/Banner2.jpg"),
-    require("../assets/images/Banner3.jpg"),
-    require("../assets/images/Banner4.jpg"),
-    require("../assets/images/Banner5.jpg"),
-    require("../assets/images/Banner6.jpg"),
+    require("../assets/images/Banners/Banner1.jpg"),
+    require("../assets/images/Banners/Banner2.jpg"),
+    require("../assets/images/Banners/Banner3.jpg"),
+    require("../assets/images/Banners/Banner4.jpg"),
+    require("../assets/images/Banners/Banner5.jpg"),
+    require("../assets/images/Banners/Banner6.jpg"),
   ];
 
   useEffect(() => {
@@ -125,8 +97,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Các sản phẩm bán chạy */}
-      <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
+      {/* <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
         <p className="font-bold text-xl">Các sản phẩm bán chạy</p>
         <div className="flex justify-between mx-8 my-2">
           {categories.map((cat) => (
@@ -145,10 +116,9 @@ const HomePage = () => {
         </div>
         <hr className="my-3" />
         {renderProducts(activeCategory)}
-      </div>
+      </div> */}
 
-      {/* Các sản phẩm mới */}
-      <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
+      {/* <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
         <p className="font-bold text-xl">Các sản phẩm mới</p>
         <div className="flex justify-between mx-8 my-2">
           {categories.map((cat) => (
@@ -167,7 +137,7 @@ const HomePage = () => {
         </div>
         <hr className="my-3" />
         {renderProducts(activeCategoryNew)}
-      </div>
+      </div> */}
 
       <Footer />
     </>

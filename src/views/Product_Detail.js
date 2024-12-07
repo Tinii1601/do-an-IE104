@@ -87,7 +87,7 @@ const CustomerReviews = ({ comments, addComment }) => {
 const ProductDetail = () => {
   const [showTab, setShowTab] = useState(1);
   const [currentImage, setCurrentImage] = useState(
-    require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg")
+    require("../assets/images/Van_hoc/lu-tre-duong-tau.jpg")
   );
   const [quantity, setQuantity] = useState(1);
   const [comments, setComments] = useState([
@@ -100,10 +100,9 @@ const ProductDetail = () => {
   ]);
 
   const images = [
-    require("../assets/images/hai-van-dam-duoi-bien-tb-2024.jpg"),
-    require("../assets/images/hai-van-dam-duoi-bien-tb-2024-p01.jpg"),
-    require("../assets/images/hai-van-dam-duoi-bien-tb-2024-p02.jpg"),
-    require("../assets/images/hai-van-dam-duoi-bien-tb-2024-p03.jpg"),
+    require("../assets/images/Van_hoc/lu-tre-duong-tau-p1.jpg"),
+    require("../assets/images/Van_hoc/lu-tre-duong-tau-p2.jpg"),
+    require("../assets/images/Van_hoc/lu-tre-duong-tau-p3.jpg"),
   ];
 
   const addComment = (comment) => setComments([...comments, comment]);

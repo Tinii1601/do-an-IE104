@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/login-style.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 class Login extends React.Component {
   XuatFormDK = () => {
@@ -56,6 +58,7 @@ class Login extends React.Component {
   render() {
     return (
       <>
+        <Header />
         <div class="container">
           <div class="link">
             <a id="dangnhap" href="#" class="tab" onClick={this.XuatFormDN}>
@@ -144,6 +147,7 @@ class Login extends React.Component {
             </form>
           </div>
         </div>
+        <Footer />
       </>
     );
   }

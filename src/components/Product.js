@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import data from "../views/data";
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
-    <Link to="/product_detail">
-      <div className="relative border w-48 items-center bg-white py-2 px-3 cursor-pointer">
-        <div className="absolute top-0 right-0 bg-do text-white text-xs font-bold px-2 py-1 rounded-bl-lg">
-          {`Sale 20%`}
-        </div>
-        <img
-          src={require("../assets/images/Van_hoc/lu-tre-duong-tau.jpg")}
-          width="160px"
-        />
-        <p>Lũ trẻ đường tàu</p>
-        <p className="font-bold">90.000 đ</p>
+    <div className="relative border w-48 items-center bg-white py-2 px-3 cursor-pointer">
+      <div className="absolute top-0 right-0 bg-do text-white text-xs font-bold px-2 py-1 rounded-bl-lg">
+        {product.sale}%
       </div>
-    </Link>
+      <img src={product.image} width="160px" />
+      <p>{product.name}</p>
+      <p className="font-bold">{product.getDiscountedPrice()} đ</p>
+      <Link to={`/product/${product.id}`}>Xem chi tiết</Link>
+      <button type="button" onClick={() => {
+        alert("Đã thêm vào giỏ hàng");
+      }}>Thêm vào giỏ hàng</button>
+    </div>
   );
 };
 

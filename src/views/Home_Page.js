@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
+import data from "./data";
 
 // Các mảng sản phẩm khác (kt, kns, stn, vh_dl) tương tự như trên.
 
@@ -13,10 +14,12 @@ const categories = [
   { key: "vh_dl", name: "Văn hóa - Du lịch", component: <Product /> },
 ];
 
+const products = data.products;
+
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState("kt");
-  const [activeCategoryNew, setActiveCategoryNew] = useState("kt");
+  const [activeCategory, setActiveCategory] = useState("vh");
+  const [activeCategoryNew, setActiveCategoryNew] = useState("vh");
 
   const banners = [
     require("../assets/images/Banners/Banner1.jpg"),
@@ -88,9 +91,8 @@ const HomePage = () => {
           {banners.map((_, index) => (
             <span
               key={index}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
-                currentIndex === index ? "bg-white" : "bg-gray-500"
-              }`}
+              className={`w-3 h-3 rounded-full cursor-pointer ${currentIndex === index ? "bg-white" : "bg-gray-500"
+                }`}
               onClick={() => handleDotClick(index)}
             ></span>
           ))}

@@ -3,7 +3,10 @@ import HomePage from "./Home_Page";
 import ProductMix from "./Product_Mix";
 import ProductDetail from "./Product_Detail";
 import Cart from "./Cart";
+import data from "./data";
 import Account from "../components/Account";
+import Login from "./Login";
+import Pay from "./Pay";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "../styles/App.css";
 
@@ -14,9 +17,15 @@ class App extends React.Component {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/product_mix" element={<ProductMix />} />
-            <Route path="/product_detail" element={<ProductDetail />} />
+            <Route path="/product_mix/:category" element={<ProductMix />} />
+            <Route
+              path="/product/:id"
+              element={<ProductDetail products={data.products} />}
+            />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/pay" element={<Pay />} />
           </Routes>
         </Router>
       </>

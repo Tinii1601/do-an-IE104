@@ -5,36 +5,6 @@ const Header = () => {
   const [showFolderOptions, setShowFolderOptions] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
 
-  const categories = [
-    "Kinh tế",
-    "Văn học",
-    "Kỹ năng sống",
-    "Sách thiếu nhi",
-    "Văn hóa và du lịch",
-  ];
-
-  const accountOptions = [
-    "Thông tin tài khoản",
-    "Quản lý đơn hàng",
-    "Đăng nhập",
-    "Đăng ký",
-  ];
-
-  const renderDropdown = (options, onClickOutside) => (
-    <div className="absolute w-48 bg-white shadow-lg">
-      {options.map((option) => (
-        <Link key={option} to="/product_mix">
-          <div
-            className="text-xl p-2 hover:bg-gray-200 cursor-pointer"
-            onClick={onClickOutside}
-          >
-            {option}
-          </div>
-        </Link>
-      ))}
-    </div>
-  );
-
   return (
     <>
       {/* Top Bar */}
@@ -69,9 +39,8 @@ const Header = () => {
         <div className="relative">
           <div
             onClick={() => setShowFolderOptions(!showFolderOptions)}
-            className={`ml-4 p-1 text-center cursor-pointer ${
-              showFolderOptions ? "bg-lime-700" : "hover:bg-lime-700"
-            }`}
+            className={`ml-4 p-1 text-center cursor-pointer ${showFolderOptions ? "bg-lime-700" : "hover:bg-lime-700"
+              }`}
           >
             <p className="font-bold text-xl text-white">
               Danh mục sản phẩm
@@ -80,8 +49,35 @@ const Header = () => {
               </span>
             </p>
           </div>
-          {showFolderOptions &&
-            renderDropdown(categories, () => setShowFolderOptions(false))}
+          {showFolderOptions && (
+            <div className="absolute left-4 w-full bg-white shadow-lg">
+              <Link to="/product_mix/Van_hoc">
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                  Sách văn học
+                </div>
+              </Link>
+              <Link to="/product_mix/Kinh_te">
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                  Sách kinh tế
+                </div>
+              </Link>
+              <Link to="/product_mix/Ky_nang_song">
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                  Sách kỹ năng sống
+                </div>
+              </Link>
+              <Link to="/product_mix/Thieu_nhi">
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                  Sách thiếu nhi
+                </div>
+              </Link>
+              <Link to="/product_mix/vh_dl">
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                  Văn hóa và du lịch
+                </div>
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Search Bar */}
@@ -103,9 +99,8 @@ const Header = () => {
         <div className="relative">
           <div
             onClick={() => setShowAccountOptions(!showAccountOptions)}
-            className={`ml-4 flex p-1 text-center cursor-pointer ${
-              showAccountOptions ? "bg-lime-700" : "hover:bg-lime-700"
-            }`}
+            className={`ml-4 flex p-1 text-center cursor-pointer ${showAccountOptions ? "bg-lime-700" : "hover:bg-lime-700"
+              }`}
           >
             <img
               src={require("../assets/icons/icon_user.png")}
@@ -119,8 +114,34 @@ const Header = () => {
               </span>
             </p>
           </div>
-          {showAccountOptions &&
-            renderDropdown(accountOptions, () => setShowAccountOptions(false))}
+          {showAccountOptions && <div className="absolute w-48 bg-white shadow-lg">
+            <Link to="/account">
+              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                Thông tin tài khoản
+              </div>
+            </Link>
+            <Link to="/account">
+              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                Đơn hàng của tôi
+              </div>
+            </Link>
+            <Link to="/account">
+              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                Đổi mật khẩu
+              </div>
+            </Link>
+            <Link to="/login">
+              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                Đăng nhập
+              </div>
+            </Link>
+            <Link to="/login">
+              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                Đăng ký
+              </div>
+            </Link>
+          </div>
+          }
         </div>
 
         {/* Cart */}

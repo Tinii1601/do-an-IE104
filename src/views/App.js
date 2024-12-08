@@ -7,6 +7,8 @@ import data from "./data";
 import Account from "../components/Account";
 import Login from "./Login";
 import Pay from "./Pay";
+import Intro from "./Intro";
+import IntroSystem from "./Intro_system";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "../styles/App.css";
 
@@ -26,6 +28,8 @@ class App extends React.Component {
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<Login />} />
             <Route path="/pay" element={<Pay />} />
+            <Route path="/intro" element={<Intro />} />
+            <Route path="/introsystem" element={<IntroSystem />} />
           </Routes>
         </Router>
       </>

@@ -39,21 +39,12 @@
   padding-top: 10px;
 }
 
-.NhapMa input {
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 0 5px;
-}
-
-.NhapMa input[type="text"] {
+.NhapMa #MaKM {
   width: 50%;
   margin: 0 20px;
   padding: 5px;
-}
-
-.NhapMa input[type="button"] {
-  font-weight: bold;
-  box-shadow: 0 0 5px gray;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .Total {
@@ -67,4 +58,14 @@
   font-weight: bold;
   box-shadow: 0 0 5px gray;
   margin-top: 10px;
+}
+
+#donhang tr td:nth-child(1),
+#donhang tr th {
+  text-align: left;
+}
+
+#donhang {
+  width: 100%;
+  text-align: center;
 }

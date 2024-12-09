@@ -12,7 +12,7 @@ class Intro extends React.Component {
         <div className="relative z-20">
           <Header />
         </div>
-        <div className="container">
+        <div className="intro-container">
           <h1>Giới thiệu Nhà Sách</h1>
           <p>
             uit.com là trang thương mại điện tử của Nhà Sách UIT, hệ thống nhà

@@ -47,6 +47,7 @@ const Login = () => {
       if (errorSpan) {
         errorSpan.innerHTML = `Mục <b>${input.name}</b> không được để trống!!!!!`;
         errorSpan.style.color = "red";
+        errorSpan.style.display = "block"
       }
     }
   };
@@ -57,6 +58,7 @@ const Login = () => {
     input.style.border = "2px solid black";
     if (errorSpan) {
       errorSpan.textContent = "";
+      errorSpan.style.display = "none"
     }
   };
 
@@ -70,7 +72,7 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div class="container">
+      <div class="login-container">
         <div class="link">
           <a id="dangnhap" href="#" class="tab" onClick={XuatFormDN}>
             Đăng nhập
@@ -83,30 +85,14 @@ const Login = () => {
           <form name="formLogin">
             <div class="Nhap">
               <label>Tên đăng nhập</label>
-              <br />
-              <input
-                type="text"
-                name="Tên đăng nhập"
-                required
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
+              <input type="text" name="Tên đăng nhập" required onBlur={handleBlur} onFocus={handleFocus}/>
               <span></span>
-              <br />
               <label>Mật khẩu</label>
+              <input type="password" name="Mật khẩu" id="" required onBlur={handleBlur} onFocus={handleFocus}/>
+              <span></span>
               <a href="#" class="forgot-password">
                 Quên mật khẩu?
               </a>
-              <br />
-              <input
-                type="password"
-                name="Mật khẩu"
-                id=""
-                required
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
-              <span></span>
             </div>
             <div class="submition">
               <input type="button" value="Đăng nhập" onClick={handleLogin} />
@@ -117,7 +103,6 @@ const Login = () => {
           <form name="formSignin">
             <div class="Nhap">
               <label>Số điện thoại/Email</label>
-              <br />
               <input
                 type="text"
                 class="Username"
@@ -127,9 +112,7 @@ const Login = () => {
                 onFocus={handleFocus}
               />
               <span></span>
-              <br />
               <label>Mật khẩu</label>
-              <br />
               <input
                 type="password"
                 name="Mật khẩu"
@@ -139,9 +122,7 @@ const Login = () => {
                 onFocus={handleFocus}
               />
               <span></span>
-              <br />
               <label>Nhập lại mật khẩu</label>
-              <br />
               <input
                 type="password"
                 name="Nhập lại mật khẩu"

@@ -46,7 +46,9 @@ const Cart = () => {
 
   const totalAmount = cart
     .filter((item) => item.selected)
-    .reduce((total, item) => total + item.gia * item.quantity, 0);
+    .reduce((total, item) => total + item.getDiscountedPrice() * item.quantity, 0);
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -60,7 +62,7 @@ const Cart = () => {
           <p className="text-xl text-center">Giỏ hàng đang trống</p>
         ) : (
           <>
-            <p className="text-xl text-center">Tổng sản phẩm: {cart.length}</p>
+            <p className="text-xl text-center">Tổng sản phẩm: {totalItems}</p>
             <table className="w-full mt-5 border-collapse">
               <thead>
                 <tr className="border-b-2 py-2">
@@ -110,9 +112,9 @@ const Cart = () => {
                         min="1"
                       />
                     </td>
-                    <td className="p-2">{item.gia.toLocaleString()} VND</td>
+                    <td className="p-2">{item.getDiscountedPrice().toLocaleString()} VND</td>
                     <td className="p-2">
-                      {(item.gia * item.quantity).toLocaleString()} VND
+                      {(item.getDiscountedPrice() * item.quantity).toLocaleString()} VND
                     </td>
                     <td className="p-2">
                       <button

@@ -2,9 +2,14 @@ import React from "react";
 import "../styles/login-style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-class Login extends React.Component {
-  XuatFormDK = () => {
+const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const XuatFormDK = () => {
     const signin = document.getElementById("Signin");
     const login = document.getElementById("Login");
     const linka = document.getElementsByClassName("tab");
@@ -19,7 +24,7 @@ class Login extends React.Component {
     linka[1].style.border = "none";
   };
 
-  XuatFormDN = () => {
+  const XuatFormDN = () => {
     const signin = document.getElementById("Signin");
     const login = document.getElementById("Login");
     const linka = document.getElementsByClassName("tab");
@@ -34,7 +39,7 @@ class Login extends React.Component {
     linka[1].style.borderLeft = "none";
   };
 
-  handleBlur = (event) => {
+  const handleBlur = (event) => {
     const input = event.target;
     const errorSpan = input.nextElementSibling;
     if (!input.value.trim()) {
@@ -46,7 +51,7 @@ class Login extends React.Component {
     }
   };
 
-  handleFocus = (event) => {
+  const handleFocus = (event) => {
     const input = event.target;
     const errorSpan = input.nextElementSibling;
     input.style.border = "2px solid black";
@@ -55,102 +60,107 @@ class Login extends React.Component {
     }
   };
 
-  render() {
-    return (
-      <>
-        <Header />
-        <div class="container">
-          <div class="link">
-            <a id="dangnhap" href="#" class="tab" onClick={this.XuatFormDN}>
-              Đăng nhập
-            </a>
-            <a id="dangky" href="#" class="tab" onClick={this.XuatFormDK}>
-              Đăng ký
-            </a>
-          </div>
-          <div id="Login" class="divForm">
-            <form name="formLogin">
-              <div class="Nhap">
-                <label>Tên đăng nhập</label>
-                <br />
-                <input
-                  type="text"
-                  name="Tên đăng nhập"
-                  required
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
-                />
-                <span></span>
-                <br />
-                <label>Mật khẩu</label>
-                <a href="#" class="forgot-password">
-                  Quên mật khẩu?
-                </a>
-                <br />
-                <input
-                  type="password"
-                  name="Mật khẩu"
-                  id=""
-                  required
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
-                />
-                <span></span>
-              </div>
-              <div class="submition">
-                <input type="button" value="Đăng nhập" />
-              </div>
-            </form>
-          </div>
-          <div id="Signin" class="divForm">
-            <form name="formSignin">
-              <div class="Nhap">
-                <label>Số điện thoại/Email</label>
-                <br />
-                <input
-                  type="text"
-                  class="Username"
-                  name="Tên đăng nhập"
-                  required
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
-                />
-                <span></span>
-                <br />
-                <label>Mật khẩu</label>
-                <br />
-                <input
-                  type="password"
-                  name="Mật khẩu"
-                  class="Password"
-                  required
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
-                />
-                <span></span>
-                <br />
-                <label>Nhập lại mật khẩu</label>
-                <br />
-                <input
-                  type="password"
-                  name="Nhập lại mật khẩu"
-                  class="Password"
-                  required
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
-                />
-                <span></span>
-              </div>
-              <div class="submition">
-                <input type="button" value="Đăng ký" onclick="checkSignIn()" />
-              </div>
-            </form>
-          </div>
+  const handleLogin = () => {
+    login();
+    alert("Đăng nhập thành công!");
+    navigate("/");
+  };
+
+
+  return (
+    <>
+      <Header />
+      <div class="container">
+        <div class="link">
+          <a id="dangnhap" href="#" class="tab" onClick={XuatFormDN}>
+            Đăng nhập
+          </a>
+          <a id="dangky" href="#" class="tab" onClick={XuatFormDK}>
+            Đăng ký
+          </a>
         </div>
-        <Footer />
-      </>
-    );
-  }
+        <div id="Login" class="divForm">
+          <form name="formLogin">
+            <div class="Nhap">
+              <label>Tên đăng nhập</label>
+              <br />
+              <input
+                type="text"
+                name="Tên đăng nhập"
+                required
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+              />
+              <span></span>
+              <br />
+              <label>Mật khẩu</label>
+              <a href="#" class="forgot-password">
+                Quên mật khẩu?
+              </a>
+              <br />
+              <input
+                type="password"
+                name="Mật khẩu"
+                id=""
+                required
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+              />
+              <span></span>
+            </div>
+            <div class="submition">
+              <input type="button" value="Đăng nhập" onClick={handleLogin} />
+            </div>
+          </form>
+        </div>
+        <div id="Signin" class="divForm">
+          <form name="formSignin">
+            <div class="Nhap">
+              <label>Số điện thoại/Email</label>
+              <br />
+              <input
+                type="text"
+                class="Username"
+                name="Tên đăng nhập"
+                required
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+              />
+              <span></span>
+              <br />
+              <label>Mật khẩu</label>
+              <br />
+              <input
+                type="password"
+                name="Mật khẩu"
+                class="Password"
+                required
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+              />
+              <span></span>
+              <br />
+              <label>Nhập lại mật khẩu</label>
+              <br />
+              <input
+                type="password"
+                name="Nhập lại mật khẩu"
+                class="Password"
+                required
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+              />
+              <span></span>
+            </div>
+            <div class="submition">
+              <input type="button" value="Đăng ký" onclick="checkSignIn()" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
 
 export default Login;

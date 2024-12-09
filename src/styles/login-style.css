@@ -8,9 +8,11 @@
   box-sizing: border-box;
 }
 
-.container > * {
-  max-width: 100%; /* Đảm bảo không phần tử nào tràn quá khung */
-  overflow: hidden; /* Ẩn nội dung thừa nếu có */
+.container>* {
+  max-width: 100%;
+  /* Đảm bảo không phần tử nào tràn quá khung */
+  overflow: hidden;
+  /* Ẩn nội dung thừa nếu có */
 }
 
 .link {
@@ -79,7 +81,7 @@
   width: 100%;
 }
 
-.Nhap > * {
+.Nhap>* {
   margin-bottom: 10px;
   padding: 5px;
 }

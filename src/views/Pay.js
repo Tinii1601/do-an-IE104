@@ -84,7 +84,7 @@ class Pay extends React.Component {
         <div className="pay-container">
           <form>
             <div className="content">
-              <h3>Địa chỉ giaog hàng</h3>
+              <h3>Địa chỉ giao hàng</h3>
               <div className="Nhap">
                 <label>Họ tên người nhận</label>
                 <div>

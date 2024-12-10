@@ -1,19 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   const supportItems = [
     "Các câu hỏi thường gặp",
     "Hướng dẫn mua hàng",
     "Chính sách đổi/trả hàng",
-  ];
-
-  const aboutItems = [
-    "Giới thiệu về nhà sách",
-    "Hệ thống nhà sách",
-    "Điều khoản sử dụng",
-    "Chính sách bảo mật",
-    "Chính sách bán hàng",
-    "Phương thức vận chuyển",
   ];
 
   const contactInfo = [
@@ -60,11 +53,22 @@ const Footer = () => {
     <div className="grid grid-cols-3 gap-3 bg-white px-32 py-6">
       <div>
         <p className="font-bold text-xl">Về chúng tôi</p>
-        {renderList(aboutItems)}
+        <div className="ml-4">
+          <p className="cursor-pointer" onClick={() => { navigate('/intro') }}>Giới thiệu về nhà sách</p>
+          <p className="cursor-pointer" onClick={() => { navigate('/introsystem') }}>Hệ thống nhà sách</p>
+          <p>Điều khoản sử dụng</p>
+          <p>Chính sách bảo mật</p>
+          <p>Chính sách bán hàng</p>
+          <p>Phương thức vận chuyển</p>
+        </div>
       </div>
       <div>
         <p className="font-bold text-xl">Hỗ trợ khách hàng</p>
-        {renderList(supportItems)}
+        <div className="ml-4">
+          <p className="cursor-pointer" onClick={() => { navigate('') }}>Các câu hỏi thường gặp</p>
+          <p className="cursor-pointer" onClick={() => { navigate('') }}>Hướng dẫn mua hàng</p>
+          <p>Chính sách đổi/trả hàng</p>
+        </div>
       </div>
       <div>
         <p className="font-bold text-xl">Thông tin liên hệ</p>

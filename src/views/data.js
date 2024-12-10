@@ -47,8 +47,8 @@ class Data {
     this.products.push(product);
   }
 
-  addUser(user) {
-    this.users.push(user);
+  addUser(id, username, password) {
+    this.users.push(new User(id, username, password));
   }
 
   list_products_by_category(category) {

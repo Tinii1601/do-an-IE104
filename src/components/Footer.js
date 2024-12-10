@@ -3,11 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const supportItems = [
-    "Các câu hỏi thường gặp",
-    "Hướng dẫn mua hàng",
-    "Chính sách đổi/trả hàng",
-  ];
 
   const contactInfo = [
     { label: "Hotline: 1900xxxx", icon: null },
@@ -27,14 +22,6 @@ const Footer = () => {
     },
     { src: require("../assets/icons/zalo.png"), alt: "Zalo", width: "40px" },
   ];
-
-  const renderList = (items) => (
-    <div className="pl-4">
-      {items.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
-    </div>
-  );
 
   const renderContact = () => (
     <div className="pl-4">

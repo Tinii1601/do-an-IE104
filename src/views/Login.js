@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import data from "./data";
 
 const Login = () => {
   const { login } = useAuth();
@@ -62,6 +63,9 @@ const Login = () => {
     }
   };
 
+  const checkSignIn = () => {
+  }
+
   const handleLogin = () => {
     login();
     alert("Đăng nhập thành công!");
@@ -85,10 +89,10 @@ const Login = () => {
           <form name="formLogin">
             <div class="Nhap">
               <label>Tên đăng nhập</label>
-              <input type="text" name="Tên đăng nhập" required onBlur={handleBlur} onFocus={handleFocus}/>
+              <input type="text" name="Tên đăng nhập" required onBlur={handleBlur} onFocus={handleFocus} />
               <span></span>
               <label>Mật khẩu</label>
-              <input type="password" name="Mật khẩu" id="" required onBlur={handleBlur} onFocus={handleFocus}/>
+              <input type="password" name="Mật khẩu" id="" required onBlur={handleBlur} onFocus={handleFocus} />
               <span></span>
               <a href="#" class="forgot-password">
                 Quên mật khẩu?
@@ -102,8 +106,9 @@ const Login = () => {
         <div id="Signin" class="divForm">
           <form name="formSignin">
             <div class="Nhap">
-              <label>Số điện thoại/Email</label>
+              <label>Tên đăng nhập</label>
               <input
+                id="dk_username"
                 type="text"
                 class="Username"
                 name="Tên đăng nhập"
@@ -114,6 +119,7 @@ const Login = () => {
               <span></span>
               <label>Mật khẩu</label>
               <input
+                id="dk_password"
                 type="password"
                 name="Mật khẩu"
                 class="Password"
@@ -124,6 +130,7 @@ const Login = () => {
               <span></span>
               <label>Nhập lại mật khẩu</label>
               <input
+                id="dk_repassword"
                 type="password"
                 name="Nhập lại mật khẩu"
                 class="Password"
@@ -134,7 +141,7 @@ const Login = () => {
               <span></span>
             </div>
             <div class="submition">
-              <input type="button" value="Đăng ký" onclick="checkSignIn()" />
+              <input type="button" value="Đăng ký" onclick={checkSignIn()} />
             </div>
           </form>
         </div>

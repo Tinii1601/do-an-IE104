@@ -20,7 +20,7 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="relative border w-48 items-center bg-white py-2 px-3 cursor-pointer">
+    <div className="relative border w-48 items-center bg-white py-2 px-3">
       {product.sale > 0 && <div className="absolute top-0 right-0 bg-do text-white text-xs font-bold px-2 py-1 rounded-bl-lg">
         {product.sale}%
       </div>}

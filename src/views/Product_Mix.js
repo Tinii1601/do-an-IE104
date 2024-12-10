@@ -12,12 +12,8 @@ const ProductMix = () => {
   const sortOptions = ["Khuyến mãi", "Giá tăng dần", "Giá giảm dần"];
   const { category } = useParams(); // Lấy category từ URL
 
-  const products = data.products
-
   // Lọc sản phẩm theo category
-  const filteredProducts = products.filter(
-    (product) => product.the_loai === category
-  );
+  const filteredProducts = data.products.list_products_by_category(category)
 
   const renderFilterSection = (title, options) => (
     <div className="m-5 bg-white p-4">
@@ -63,7 +59,7 @@ const ProductMix = () => {
             <p className="text-xl">Sắp xếp theo:</p>
             {sortOptions.map((option, index) => (
               <label key={index} className="flex items-center space-x-2">
-                <input type="checkbox" value="" className="w-4 h-4" />
+                <input type="radio" value="" className="w-4 h-4" />
                 <span>{option}</span>
               </label>
             ))}

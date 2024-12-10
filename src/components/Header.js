@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [showFolderOptions, setShowFolderOptions] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const { cart } = useCart(); // Truy cập giỏ hàng từ CartContext
+  const { isLoggedIn } = useAuth(); // Truy cập trạng thái đăng nhập từ AuthContext
+  const navigate = useNavigate();
 
   // Tính tổng số lượng sản phẩm trong giỏ hàng
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -148,23 +152,28 @@ const Header = () => {
           </div>
           }
         </div>
-
-        {/* Cart */}
-        <Link to="/Cart">
-          <div className="relative mr-4 p-1 text-center flex hover:bg-lime-700 cursor-pointer">
-            <img
-              src={require("../assets/icons/icon_cart.png")}
-              alt="Cart Icon"
-              width="30px"
-            />
-            <p className="ml-1 font-bold text-xl text-white">Giỏ hàng</p>
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-cam text-white text-sm font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                {totalItems}
-              </span>
-            )}
-          </div>
-        </Link>
+        <div className="relative mr-4 p-1 text-center flex hover:bg-lime-700 cursor-pointer"
+          onClick={() => {
+            if (!isLoggedIn) {
+              alert("Bạn cần đăng nhập để thêm vào giỏ hàng!");
+              navigate("/login"); // Chuyển hướng đến trang đăng nhập
+              return;
+            }
+            navigate("/cart"); // Chuyển hướng đến trang giỏ hàng
+          }
+          }>
+          <img
+            src={require("../assets/icons/icon_cart.png")}
+            alt="Cart Icon"
+            width="30px"
+          />
+          <p className="ml-1 font-bold text-xl text-white">Giỏ hàng</p>
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-cam text-white text-sm font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              {totalItems}
+            </span>
+          )}
+        </div>
       </div>
     </>
   );

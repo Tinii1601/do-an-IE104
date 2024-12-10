@@ -25,14 +25,14 @@ const Product = ({ product }) => {
         {product.sale}%
       </div>}
       <img src={product.image} width="160px" alt={product.name} />
-      <p className="h-12">{product.name}</p>
+      <p className="h-12 line-clamp-2 ">{product.name}</p>
       <div className="h-12">
         {product.sale > 0 && <p className="line-through">{product.gia.toLocaleString()} đ</p>}
         <p className="font-bold">{product.getDiscountedPrice().toLocaleString()} đ</p>
       </div>
       <div className="flex gap-1 ">
         <button type="button" className="bg-orange-300" onClick={() => handleAddToCart(product)}>Thêm vào giỏ hàng</button>
-        <div className="bg-green-300 p-2" onClick={() => { navigate(`/product/${product.id}`) }}>Xem chi tiết</div>
+        <div className="bg-green-300 p-2 cursor-pointer" onClick={() => { navigate(`/product/${product.id}`) }}>Xem chi tiết</div>
       </div>
     </div>
   );

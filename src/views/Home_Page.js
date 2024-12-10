@@ -6,11 +6,12 @@ import data from "./data";
 
 // Các mảng sản phẩm khác (kt, kns, stn, vh_dl) tương tự như trên.
 
-const listProduct_vh = data.products.list_products_by_category('Van_hoc').slice(0, 4);
-const listProduct_kt = data.products.list_products_by_category('Kinh_te').slice(0, 4);
-const listProduct_kns = data.products.list_products_by_category('Ky_nang_song').slice(0, 4);
-const listProduct_stn = data.products.list_products_by_category('Thieu_nhi').slice(0, 4);
-const listProduct_vh_dl = data.products.list_products_by_category('vh_dl').slice(0, 4);
+const listProduct_vh = data.list_products_by_category('Van_hoc').slice(0, 4);
+const listProduct_kt = data.list_products_by_category('Kinh_te').slice(0, 4);
+const listProduct_kns = data.list_products_by_category('Ky_nang_song').slice(0, 4);
+const listProduct_stn = data.list_products_by_category('Thieu_nhi').slice(0, 4);
+const listProduct_vh_dl = data.list_products_by_category('vh_dl').slice(0, 4);
+
 
 const categories = [
   { key: "vh", name: "Văn học", products: listProduct_vh },

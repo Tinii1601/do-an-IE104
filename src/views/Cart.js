@@ -2,9 +2,11 @@ import React, { useCallback } from "react";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, setCart } = useCart();
+  const navigate = useNavigate();
 
   const handleQuantityChange = useCallback(
     (index, newQuantity) => {
@@ -46,7 +48,7 @@ const Cart = () => {
 
   const totalAmount = cart
     .filter((item) => item.selected)
-    .reduce((total, item) => total + item.getDiscountedPrice() * item.quantity, 0);
+    .reduce((total, item) => total + item.gia * (1.0 - item.sale / 100.0) * item.quantity, 0);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -59,7 +61,7 @@ const Cart = () => {
       <div className="mx-20 my-5 bg-white rounded-lg p-5">
         <p className="font-bold text-3xl text-center">Giỏ hàng của tôi</p>
         {cart.length === 0 ? (
-          <p className="text-xl text-center">Giỏ hàng đang trống</p>
+          <div className="text-xl text-center h-28">Giỏ hàng đang trống</div>
         ) : (
           <>
             <p className="text-xl text-center">Tổng sản phẩm: {totalItems}</p>
@@ -112,9 +114,9 @@ const Cart = () => {
                         min="1"
                       />
                     </td>
-                    <td className="p-2">{item.getDiscountedPrice().toLocaleString()} VND</td>
+                    <td className="p-2">{(item.gia * (1.0 - item.sale / 100.0)).toLocaleString()} VND</td>
                     <td className="p-2">
-                      {(item.getDiscountedPrice() * item.quantity).toLocaleString()} VND
+                      {(item.gia * (1.0 - item.sale / 100.0) * item.quantity).toLocaleString()} VND
                     </td>
                     <td className="p-2">
                       <button
@@ -128,10 +130,18 @@ const Cart = () => {
                 ))}
               </tbody>
             </table>
-            <div className="mt-5 text-right">
-              <p className="text-2xl font-bold">
-                Tổng thanh toán: {totalAmount.toLocaleString()} VND
-              </p>
+            <div className="flex gap-28 my-5">
+              <textarea
+                className="w-1/2 border border-gray-300 p-2 rounded-lg "
+                rows="4"
+                cols="50"
+                placeholder="Nhập ghi chú tại đây ... " />
+              <div className="mt-5 text-right">
+                <p className="text-2xl font-bold">
+                  Tổng thanh toán: {totalAmount.toLocaleString()} VND
+                </p>
+                <button className="bg-cam p-4 text-2xl text-white rounded-lg" onClick={() => { navigate('/pay') }}>Thanh Toán</button>
+              </div>
             </div>
           </>
         )}

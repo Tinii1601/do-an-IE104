@@ -15,6 +15,7 @@ class Product {
     this.tac_gia = tac_gia;
     this.nam_xb = nam_xb;
   }
+
   getDiscountedPrice() {
     return this.gia * (1 - this.sale / 100);
   }
@@ -52,6 +53,40 @@ class Data {
 
   list_products_by_category(category) {
     return this.products.filter((product) => product.isCategory(category));
+  }
+
+  list_products_checkbox(category, publishers = [], prices = [], formats = [], sortOption = "") {
+    return this.products.filter((product) => {
+      // Kiểm tra điều kiện Thể loại
+      const matchCategory = product.isCategory(category)
+
+      // Kiểm tra điều kiện Nhà xuất bản
+      const matchPublisher =
+        publishers.length === 0 || publishers.includes(product.nxb);
+
+      // Kiểm tra điều kiện Giá
+      const isPriceMatch = (priceRange, price) => {
+        if (priceRange === "Dưới 100000đ") return price < 100000;
+        if (priceRange === "100000đ - 200000đ") return price >= 100000 && price <= 200000;
+        if (priceRange === "Trên 200000đ") return price > 200000;
+        return false;
+      };
+
+      const matchPrice =
+        prices.length === 0 || prices.some((priceRange) => isPriceMatch(priceRange, product.gia));
+
+      // Kiểm tra điều kiện Hình thức
+      const matchFormat =
+        formats.length === 0 || formats.includes(product.hinh_thuc);
+
+      // Trả về sản phẩm nếu tất cả các điều kiện đều khớp
+      return matchCategory && matchPublisher && matchPrice && matchFormat;
+    }).sort((a, b) => {
+      if (sortOption === "Khuyến mãi") return b.sale - a.sale;
+      if (sortOption === "Giá tăng dần") return a.gia - b.gia;
+      if (sortOption === "Giá giảm dần") return b.gia - a.gia;
+      return 0;
+    });
   }
 }
 

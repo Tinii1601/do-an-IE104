@@ -1,3 +1,15 @@
-.list_cat {
-  list-style-image: url("../assets/icons/icon-cuon-sach.jpg");
+.intro-container{
+  width: 80%;
+  height: fit-content;
+  padding: 3% 5%;
+  background-color: white;
+  margin: 5% auto;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.intro-container h1{
+  font-size: 30px;
+  font-weight: bolder;
+  margin: 20px 0;
 }

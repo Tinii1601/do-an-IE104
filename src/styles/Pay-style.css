@@ -1,9 +1,9 @@
-.container {
+.pay-container {
   width: 100%;
   padding: 5%;
 }
 
-.container .content {
+.pay-container .content {
   width: 80%;
   margin: 5% auto;
   background-color: white;
@@ -12,34 +12,34 @@
   box-shadow: 0 0 10px gray;
 }
 
-.content h3 {
+.pay-container .content h3 {
   font-weight: bolder;
   font-size: 20px;
 }
 
-.Nhap {
+.pay-container .Nhap {
   padding-top: 5px;
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 15px;
 }
 
-.Nhap input {
+.pay-container .Nhap input {
   width: 100%;
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
 }
 
-.Nhap div {
+.pay-container .Nhap div {
   position: relative;
 }
 
-.NhapMa {
+.pay-container .NhapMa {
   padding-top: 10px;
 }
 
-.NhapMa #MaKM {
+.pay-container .NhapMa #MaKM {
   width: 50%;
   margin: 0 20px;
   padding: 5px;
@@ -47,11 +47,11 @@
   border-radius: 10px;
 }
 
-.Total {
+.pay-container .Total {
   margin-left: 75%;
 }
 
-.Total input[type="submit"] {
+.pay-container .Total input[type="submit"] {
   border: 1px solid black;
   border-radius: 10px;
   padding: 0 5px;
@@ -60,12 +60,12 @@
   margin-top: 10px;
 }
 
-#donhang tr td:nth-child(1),
-#donhang tr th {
+.pay-container #donhang tr td:nth-child(1),
+.pay-container #donhang tr th {
   text-align: left;
 }
 
-#donhang {
+.pay-container #donhang {
   width: 100%;
   text-align: center;
 }

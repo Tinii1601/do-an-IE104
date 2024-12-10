@@ -81,7 +81,7 @@ class Pay extends React.Component {
         <div className="relative z-20">
           <Header />
         </div>
-        <div className="container">
+        <div className="pay-container">
           <form>
             <div className="content">
               <h3>Địa chỉ giaog hàng</h3>

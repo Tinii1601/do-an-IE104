@@ -11,7 +11,7 @@ class IntroSystem extends React.Component {
         <div className="relative z-20">
           <Header />
         </div>
-        <div class="container">
+        <div className="introsystem-container">
           <h1>Hệ thống Nhà sách UIT</h1>
           <table className="data-table" border={1}>
             <tr>

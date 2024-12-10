@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const supportItems = [
-    "Các câu hỏi thường gặp",
-    "Hướng dẫn mua hàng",
-    "Chính sách đổi/trả hàng",
+    { label: "Các câu hỏi thường gặp", link: "/faq" },
+    { label: "Hướng dẫn mua hàng", link: "#" },
+    { label: "Chính sách đổi/trả hàng", link: "/return-policy" },
   ];
 
   const aboutItems = [
-    "Giới thiệu về nhà sách",
-    "Hệ thống nhà sách",
-    "Điều khoản sử dụng",
-    "Chính sách bảo mật",
-    "Chính sách bán hàng",
-    "Phương thức vận chuyển",
+    { label: "Giới thiệu về nhà sách", link: "/intro" },
+    { label: "Hệ thống nhà sách", link: "/introsystem" },
+    { label: "Điều khoản sử dụng", link: "#" },
+    { label: "Chính sách bảo mật", link: "#" },
+    { label: "Chính sách bán hàng", link: "#" },
+    { label: "Phương thức vận chuyển", link: "#" },
   ];
 
   const contactInfo = [
@@ -38,7 +39,15 @@ const Footer = () => {
   const renderList = (items) => (
     <div className="pl-4">
       {items.map((item, index) => (
-        <p key={index}>{item}</p>
+        <p key={index}>
+          {item.link ? (
+            <Link to={item.link} className="text-blue-500 hover:underline">
+              {item.label}
+            </Link>
+          ) : (
+            item.label
+          )}
+        </p>
       ))}
     </div>
   );

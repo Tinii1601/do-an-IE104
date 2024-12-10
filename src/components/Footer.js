@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -52,9 +53,9 @@ const Footer = () => {
       <div>
         <p className="font-bold text-xl">Hỗ trợ khách hàng</p>
         <div className="ml-4">
-          <p className="cursor-pointer" onClick={() => { navigate('') }}>Các câu hỏi thường gặp</p>
-          <p className="cursor-pointer" onClick={() => { navigate('') }}>Hướng dẫn mua hàng</p>
-          <p>Chính sách đổi/trả hàng</p>
+          <p className="cursor-pointer" onClick={() => { navigate('/faq') }}>Các câu hỏi thường gặp</p>
+          <p>Hướng dẫn mua hàng</p>
+          <p className="cursor-pointer" onClick={() => { navigate('/return-policy') }}>Chính sách đổi/trả hàng</p>
         </div>
       </div>
       <div>

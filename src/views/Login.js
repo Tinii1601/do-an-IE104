@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import data from "./data";
+import data from "../assets/data";
 
 const Login = () => {
   const { login } = useAuth();

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
-import data from "./data";
+import data from "../assets/data";
 
 const ProductMix = () => {
   const publishers = ["NXB Trẻ", "NXB Phụ nữ", "NXB Thanh niên"];

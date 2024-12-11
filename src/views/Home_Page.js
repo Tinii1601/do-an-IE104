@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
-import data from "./data";
+import data from "../assets/data";
 
 // Các mảng sản phẩm khác (kt, kns, stn, vh_dl) tương tự như trên.
 

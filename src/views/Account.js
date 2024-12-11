@@ -52,7 +52,7 @@ function Account() {
     }));
   };
 
-  
+
   const handleSavePassword = (e) => {
     e.preventDefault();
     if (passwords.newPassword !== passwords.confirmPassword) {
@@ -92,9 +92,8 @@ function Account() {
 
       {/* Main Content */}
       <div
-        className={`main-content ${
-          activeSection === 'changePassword' ? 'small' : 'large'
-        }`}
+        className={`main-content ${activeSection === 'changePassword' ? 'small' : 'large'
+          }`}
       >
         {activeSection === 'accountInfo' && (
           <>

@@ -51,7 +51,7 @@ function ReturnPolicy() {
 
         <div className="policy-image">
           <img
-            src={require("D:/IE104CNVN/do-an-IE104/src/assets/icons/ChinhSachDoiTra.jpg")}
+            src={require("../assets/icons/ChinhSachDoiTra.jpg")}
             alt="Chính Sách Đổi Trả"
           />
         </div>

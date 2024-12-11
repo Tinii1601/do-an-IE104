@@ -2,19 +2,24 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
-import data from "./data";
+import data from "../assets/data";
 
 // Các mảng sản phẩm khác (kt, kns, stn, vh_dl) tương tự như trên.
 
-const categories = [
-  { key: "vh", name: "Văn học", component: <Product /> },
-  { key: "kt", name: "Kinh tế", component: <Product /> },
-  { key: "kns", name: "Kỹ năng sống", component: <Product /> },
-  { key: "stn", name: "Sách thiếu nhi", component: <Product /> },
-  { key: "vh_dl", name: "Văn hóa - Du lịch", component: <Product /> },
-];
+const listProduct_vh = data.list_products_by_category('Van_hoc').slice(0, 4);
+const listProduct_kt = data.list_products_by_category('Kinh_te').slice(0, 4);
+const listProduct_kns = data.list_products_by_category('Ky_nang_song').slice(0, 4);
+const listProduct_stn = data.list_products_by_category('Thieu_nhi').slice(0, 4);
+const listProduct_vh_dl = data.list_products_by_category('vh_dl').slice(0, 4);
 
-const products = data.products;
+
+const categories = [
+  { key: "vh", name: "Văn học", products: listProduct_vh },
+  { key: "kt", name: "Kinh tế", products: listProduct_kt },
+  { key: "kns", name: "Kỹ năng sống", products: listProduct_kns },
+  { key: "stn", name: "Sách thiếu nhi", products: listProduct_stn },
+  { key: "vh_dl", name: "Văn hóa - Du lịch", products: listProduct_vh_dl },
+];
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -99,17 +104,16 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
+      <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
         <p className="font-bold text-xl">Các sản phẩm bán chạy</p>
         <div className="flex justify-between mx-8 my-2">
           {categories.map((cat) => (
             <div
               key={cat.key}
-              className={`cursor-pointer ${
-                activeCategory === cat.key
-                  ? "border-b-2 border-xanh"
-                  : "hover:border-b-2 hover:border-gray-300"
-              }`}
+              className={`cursor-pointer ${activeCategory === cat.key
+                ? "border-b-2 border-xanh"
+                : "hover:border-b-2 hover:border-gray-300"
+                }`}
               onClick={() => setActiveCategory(cat.key)}
             >
               {cat.name}
@@ -118,19 +122,18 @@ const HomePage = () => {
         </div>
         <hr className="my-3" />
         {renderProducts(activeCategory)}
-      </div> */}
+      </div>
 
-      {/* <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
+      <div className="rounded-xl bg-white my-5 mx-20 px-10 py-5 z-10 relative">
         <p className="font-bold text-xl">Các sản phẩm mới</p>
         <div className="flex justify-between mx-8 my-2">
           {categories.map((cat) => (
             <div
               key={cat.key}
-              className={`cursor-pointer ${
-                activeCategoryNew === cat.key
-                  ? "border-b-2 border-xanh"
-                  : "hover:border-b-2 hover:border-gray-300"
-              }`}
+              className={`cursor-pointer ${activeCategoryNew === cat.key
+                ? "border-b-2 border-xanh"
+                : "hover:border-b-2 hover:border-gray-300"
+                }`}
               onClick={() => setActiveCategoryNew(cat.key)}
             >
               {cat.name}
@@ -139,7 +142,7 @@ const HomePage = () => {
         </div>
         <hr className="my-3" />
         {renderProducts(activeCategoryNew)}
-      </div> */}
+      </div>
 
       <Footer />
     </>

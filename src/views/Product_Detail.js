@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductTabs = ({ showTab, setShowTab }) => {
   const tabs = [
@@ -27,23 +30,6 @@ const ProductTabs = ({ showTab, setShowTab }) => {
     </div>
   );
 };
-
-const ImageGallery = ({ images, currentImage, setCurrentImage }) => (
-  <div className="relative px-4 py-2">
-    <img className="absolute w-1/2 mt-5 left-1/4" src={currentImage} alt="" />
-    <div className="flex flex-col space-x-2">
-      {images.map((img, index) => (
-        <img
-          key={index}
-          className="w-24 cursor-pointer"
-          src={img}
-          alt=""
-          onClick={() => setCurrentImage(img)}
-        />
-      ))}
-    </div>
-  </div>
-);
 
 const CustomerReviews = ({ comments, addComment }) => {
   const [newComment, setNewComment] = useState("");
@@ -85,10 +71,13 @@ const CustomerReviews = ({ comments, addComment }) => {
 };
 
 const ProductDetail = ({ products }) => {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+
   const { id } = useParams(); // Lấy 'id' từ URL
   const [product, setProduct] = useState(null);
   const [showTab, setShowTab] = useState(1);
-  const [currentImage, setCurrentImage] = useState(""); // Khởi tạo state rỗng cho currentImage
   const [quantity, setQuantity] = useState(1);
   const [comments, setComments] = useState([ // Khởi tạo bình luận mặc định
     {
@@ -105,22 +94,20 @@ const ProductDetail = ({ products }) => {
       (product) => product.id === parseInt(id)
     );
     setProduct(selectedProduct);
-
-    // Sau khi có sản phẩm, khởi tạo ảnh hiện tại
-    if (selectedProduct) {
-      setCurrentImage(selectedProduct.image);
-    }
   }, [id, products]);
 
   if (!product) {
     return <div>Không tìm thấy sản phẩm</div>;
   }
 
-  const images = [
-    require("../assets/images/Van_hoc/lu-tre-duong-tau-p1.jpg"),
-    require("../assets/images/Van_hoc/lu-tre-duong-tau-p2.jpg"),
-    require("../assets/images/Van_hoc/lu-tre-duong-tau-p3.jpg"),
-  ];
+  const handleAddToCart = () => {
+    if (!isLoggedIn) {
+      alert("Bạn cần đăng nhập để thêm vào giỏ hàng!");
+      navigate("/login");
+      return;
+    }
+    addToCart(product, quantity); // Gọi luôn, không phụ thuộc điều kiện
+  };
 
   const addComment = (comment) => setComments([...comments, comment]);
 
@@ -133,11 +120,7 @@ const ProductDetail = ({ products }) => {
         <p className="text-2xl font-bold ml-5 my-4">{product.name}</p>
         <div className="flex">
           <div className="w-3/5">
-            <ImageGallery
-              images={images}
-              currentImage={currentImage}
-              setCurrentImage={setCurrentImage}
-            />
+            <img src={product.image} className="w-3/5 mx-14 my-5" alt={product.name} />
             <div className="my-5 px-4 py-2">
               <ProductTabs showTab={showTab} setShowTab={setShowTab} />
               <hr className="my-5" />
@@ -162,7 +145,8 @@ const ProductDetail = ({ products }) => {
                 <p>{quantity}</p>
                 <button onClick={() => setQuantity(quantity + 1)}> + </button>
               </div>
-              <button className="bg-cam hover:bg-orange-700 text-white text-xl font-bold py-2 px-10 rounded-full">
+              <button className="bg-cam hover:bg-orange-700 text-white text-xl font-bold py-2 px-10 rounded-full"
+                onClick={handleAddToCart}>
                 Thêm vào giỏ hàng
               </button>
             </div>

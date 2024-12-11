@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import "../styles/Pay-style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -81,10 +81,10 @@ class Pay extends React.Component {
         <div className="relative z-20">
           <Header />
         </div>
-        <div className="container">
+        <div className="pay-container">
           <form>
             <div className="content">
-              <h3>Địa chỉ giaog hàng</h3>
+              <h3>Địa chỉ giao hàng</h3>
               <div className="Nhap">
                 <label>Họ tên người nhận</label>
                 <div>

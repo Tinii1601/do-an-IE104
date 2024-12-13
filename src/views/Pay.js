@@ -1,223 +1,200 @@
-import React from "react";
-import "../styles/Pay-style.css";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { usePay } from "../context/PayContext";
+import { useNavigate } from "react-router-dom";
 
-class Pay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      total: 0,
-      discount: 0,
-      products: [
-        { name: "Thư Tình Hoàng Tử Bé", price: 105000, quantity: 1 },
-        {
-          name: "Siêu Trí Nhớ - Phương Pháp Và Các Bài Thực Hành Giúp Bạn Tối Ưu Trí Nhớ",
-          price: 168000,
-          quantity: 1,
-        },
-        {
-          name: "Illustrated Special Edition - Khu Vườn Bí Mật",
-          price: 199000,
-          quantity: 2,
-        },
-      ],
-    };
-  }
+const Pay = () => {
+  const { selectedItems, setSelectedItems } = usePay();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    city: "",
+    district: "",
+    ward: "",
+    address: "",
+  });
 
-  componentDidMount() {
-    this.calculateTotal();
-  }
-
-  calculateTotal = () => {
-    const total = this.state.products.reduce(
-      (sum, product) => sum + product.price * product.quantity,
-      0
-    );
-    this.setState({ total });
+  const [errors, setErrors] = useState({});
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  handleDiscountChange = (event) => {
-    const discountOption = event.target.value;
-    const { total } = this.state;
+  const handleSubmit = () => {
+    const newErrors = {};
+    Object.entries(formData).forEach(([key, value]) => {
+      if (!value.trim()) newErrors[key] = "Vui lòng nhập thông tin này.";
+    });
 
-    let discount = 0;
-    if (discountOption.includes("k")) {
-      discount = parseInt(discountOption) * 1000;
-    } else if (discountOption.includes("%")) {
-      discount = (total * parseInt(discountOption)) / 100;
-    }
-
-    this.setState({ discount });
-  };
-
-  handleBlur = (event) => {
-    const input = event.target;
-    const errorSpan = input.nextElementSibling;
-    if (!input.value.trim()) {
-      input.style.border = "2px solid red";
-      if (errorSpan) {
-        errorSpan.innerHTML = `Mục <b>${input.name}</b> không được để trống!!!!!`;
-        errorSpan.style.color = "red";
-      }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
+      setSelectedItems([]);
+      alert("Đặt hàng thành công!");
+      navigate("/");
     }
   };
+  return (
+    <>
+      <Header />
+      <div className="p-10 my-5 mx-20 bg-white rounded-xl">
+        <p className="font-bold text-xl">Địa chỉ giao hàng</p>
+        <label>Họ tên người nhận</label>
+        <input
+          type="text"
+          name="name"
+          className={`w-full border rounded-full my-2 ${errors.name ? "border-red-500" : ""
+            }`}
+          value={formData.name}
+          onChange={handleChange}
+        />
+        {errors.name && <p className="text-red-500">{errors.name}</p>}
 
-  handleFocus = (event) => {
-    const input = event.target;
-    const errorSpan = input.nextElementSibling;
-    input.style.border = "2px solid black";
-    if (errorSpan) {
-      errorSpan.textContent = "";
-    }
-  };
+        <label>Số điện thoại</label>
+        <input
+          type="tel"
+          name="phone"
+          className={`w-full border rounded-full my-2 ${errors.phone ? "border-red-500" : ""
+            }`}
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        {errors.phone && <p className="text-red-500">{errors.phone}</p>}
 
-  render() {
-    const { total, discount, products } = this.state;
-    const finalTotal = total - discount + 20000;
+        <label>Tỉnh / Thành phố</label>
+        <input
+          type="text"
+          name="city"
+          className={`w-full border rounded-full my-2 ${errors.city ? "border-red-500" : ""
+            }`}
+          value={formData.city}
+          onChange={handleChange}
+        />
+        {errors.city && <p className="text-red-500">{errors.city}</p>}
 
-    return (
-      <>
-        <div className="relative z-20">
-          <Header />
+        <label>Quận / Huyện</label>
+        <input
+          type="text"
+          name="district"
+          className={`w-full border rounded-full my-2 ${errors.district ? "border-red-500" : ""
+            }`}
+          value={formData.district}
+          onChange={handleChange}
+        />
+        {errors.district && <p className="text-red-500">{errors.district}</p>}
+
+        <label>Phường / Xã</label>
+        <input
+          type="text"
+          name="ward"
+          className={`w-full border rounded-full my-2 ${errors.ward ? "border-red-500" : ""
+            }`}
+          value={formData.ward}
+          onChange={handleChange}
+        />
+        {errors.ward && <p className="text-red-500">{errors.ward}</p>}
+
+        <label>Địa chỉ cụ thể</label>
+        <input
+          type="text"
+          name="address"
+          className={`w-full border rounded-full my-2 ${errors.address ? "border-red-500" : ""
+            }`}
+          value={formData.address}
+          onChange={handleChange}
+        />
+        {errors.address && <p className="text-red-500">{errors.address}</p>}
+      </div>
+      <div className="p-10 my-5 mx-20 bg-white rounded-xl">
+        <p className="font-bold text-xl">Phương thức thanh toán</p>
+        <div className="flex items-center my-2">
+          <input type="radio" name="payment" value="cod" className="mr-2" checked="checked" />
+          <label>Thanh toán khi nhận hàng</label>
         </div>
-        <div className="pay-container">
-          <form>
-            <div className="content">
-              <h3>Địa chỉ giao hàng</h3>
-              <div className="Nhap">
-                <label>Họ tên người nhận</label>
-                <div>
-                  <input
-                    type="text"
-                    name="Họ tên người nhận"
-                    required
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                  <span></span>
-                </div>
-                <label>Số điện thoại</label>
-                <div>
-                  <input
-                    type="tel"
-                    name="Số điện thoại"
-                    required
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                  <span></span>
-                </div>
-                <label>Tỉnh/Thành phố</label>
-                <div>
-                  <input
-                    type="text"
-                    name="Tỉnh/Thành phố"
-                    required
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                  <span></span>
-                </div>
-                <label>Phường/Xã</label>
-                <div>
-                  <input
-                    type="text"
-                    name="Phường/Xã"
-                    required
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                  <span></span>
-                </div>
-                <label>Địa chỉ Nhập số nhà và tên đường</label>
-                <div>
-                  <input
-                    type="text"
-                    name="Địa chỉ(Nhập số nhà và tên đường"
-                    required
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                  <span></span>
-                </div>
-              </div>
-            </div>
-            <div className="content">
-              <h3>Phương thức thanh toán</h3>
-              <input type="radio" name="pttt" />
-              Thanh toán khi nhận hàng
-              <br />
-              <input type="radio" name="pttt" />
-              Chuyển khoản qua ngân hàng
-              <br />
-              <input type="radio" name="pttt" />
-              Ví MoMo
-              <br />
-              <input type="radio" name="pttt" />
-              Thẻ visa / master / JCB
-            </div>
-            <div className="content">
-              <h3>Mã khuyến mãi</h3>
-              <div className="NhapMa">
-                <label>Mã khuyến mãi</label>
-                <select onChange={this.handleDiscountChange} id="MaKM">
-                  <option value="">-- Không sử dụng mã --</option>
-                  {total > 200000 && (
-                    <>
-                      <option value="10k">Giảm 10,000 VND</option>
-                      <option value="8%">Giảm 8%</option>
-                    </>
-                  )}
-                  {total > 500000 && (
-                    <>
-                      <option value="50k">Giảm 50,000 VND</option>
-                      <option value="20%">Giảm 20%</option>
-                    </>
-                  )}
-                  {total > 1000000 && (
-                    <>
-                      <option value="100k">Giảm 100,000 VND</option>
-                      <option value="30%">Giảm 30%</option>
-                    </>
-                  )}
-                </select>
-              </div>
-            </div>
-            <div className="content">
-              <h3>Kiểm tra lại đơn hàng</h3>
-              <table id="donhang">
-                <thead>
-                  <tr>
-                    <th>Tên sản phẩm</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product, index) => (
-                    <tr key={index}>
-                      <td>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>{product.quantity}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="Total">
-                <h6>Tổng thành tiền: {total} VND</h6>
-                <h6>Giảm giá: -{discount} VND</h6>
-                <h6>Phí vận hành: 20,000 VND</h6>
-                <h6>Tổng thanh toán: {finalTotal} VND</h6>
-                <input type="submit" value={"Xác nhận thanh toán"} />
-              </div>
-            </div>
-          </form>
+        <div className="flex items-center my-2">
+          <input type="radio" name="payment" value="bank" className="mr-2" />
+          <label>Thanh toán qua chuyển khoản ngân hàng</label>
         </div>
-        <Footer />
-      </>
-    );
-  }
+        <div className="flex items-center my-2">
+          <input type="radio" name="payment" value="momo" className="mr-2" />
+          <label>Thanh toán qua MoMo</label>
+        </div>
+        <div className="flex items-center my-2">
+          <input type="radio" name="payment" value="visa" className="mr-2" />
+          <label>Thanh toán qua thẻ Visa/MasterCard</label>
+        </div>
+      </div>
+      <div className="p-10 my-5 mx-20 bg-white rounded-xl shadow-lg">
+        <p className="font-bold text-xl mb-4">Mã khuyến mãi</p>
+        <select className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="none">Không sử dụng mã khuyến mãi</option>
+          <option value="sale5">Giảm 5%</option>
+          <option value="sale10">Giảm 10%</option>
+          <option value="sale15">Giảm 15%</option>
+          <option value="sale20">Giảm 20%</option>
+        </select>
+      </div>
+      <div className="p-10 my-5 mx-20 bg-white rounded-xl shadow-lg">
+        <p className="font-bold text-2xl text-gray-800 mb-6 text-center">
+          Kiểm tra lại đơn hàng
+        </p>
+        <table className="w-full border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <thead className="bg-gray-100 text-gray-700">
+            <tr>
+              <th className="p-3 text-left">STT</th>
+              <th className="p-3 text-left">Tên sản phẩm</th>
+              <th className="p-3 text-left">Giá</th>
+              <th className="p-3 text-left">Số lượng</th>
+              <th className="p-3 text-left">Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedItems.map((item, index) => (
+              <tr
+                key={item.id}
+                className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100`}
+              >
+                <td className="p-3">{index + 1}</td>
+                <td className="p-3">{item.name}</td>
+                <td className="p-3">
+                  {(item.gia * (1 - item.sale / 100)).toLocaleString()} đ
+                </td>
+                <td className="p-3">{item.quantity}</td>
+                <td className="p-3">
+                  {((item.gia * (1 - item.sale / 100)) * item.quantity).toLocaleString()} đ
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="text-right font-bold text-xl mt-6 text-gray-800">
+          Tổng cộng:{" "}
+          <span className="text-orange-500">
+            {selectedItems
+              .reduce(
+                (acc, item) =>
+                  acc + (item.gia * (1 - item.sale / 100)) * item.quantity,
+                0
+              )
+              .toLocaleString()}{" "}
+            đ
+          </span>
+        </p>
+        <div className="flex justify-end mt-8">
+          <button
+            className="bg-orange-500 hover:bg-orange-600 text-white rounded-lg px-6 py-3 transition duration-300 ease-in-out"
+            onClick={handleSubmit}
+          >
+            Xác nhận đơn hàng
+          </button>
+        </div>
+      </div>
+      <Footer />
+    </>
+  )
 }
 
 export default Pay;

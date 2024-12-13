@@ -17,6 +17,7 @@ import ReturnPolicy from "./ReturnPolicy";
 import { AuthProvider } from "../context/AuthContext";
 import { CartProvider } from "../context/CartContext";
 import { FavorProvider } from "../context/FavorContext";
+import { PayProvider } from "../context/PayContext";
 import data from "../assets/data";
 import "../styles/App.css";
 
@@ -25,29 +26,31 @@ const App = () => {
     <AuthProvider>
       <FavorProvider>
         <CartProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/product_mix/:category" element={<ProductMix />} />
-              <Route
-                path="/product/:id"
-                element={<ProductDetail products={data.products} />}
-              />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/change-password" element={<ChangePassword />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/favor" element={<Favor />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signin" element={<Signin />} />
-              <Route path="/pay" element={<Pay />} />
-              <Route path="/intro" element={<Intro />} />
-              <Route path="/introsystem" element={<IntroSystem />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route
-                path="/return-policy"
-                element={<ReturnPolicy />} />
-            </Routes>
-          </Router>
+          <PayProvider>
+            <Router>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/product_mix/:category" element={<ProductMix />} />
+                <Route
+                  path="/product/:id"
+                  element={<ProductDetail products={data.products} />}
+                />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/favor" element={<Favor />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/pay" element={<Pay />} />
+                <Route path="/intro" element={<Intro />} />
+                <Route path="/introsystem" element={<IntroSystem />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route
+                  path="/return-policy"
+                  element={<ReturnPolicy />} />
+              </Routes>
+            </Router>
+          </PayProvider>
         </CartProvider>
       </FavorProvider>
     </AuthProvider>

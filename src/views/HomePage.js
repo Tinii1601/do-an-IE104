@@ -4,25 +4,24 @@ import Footer from "../components/Footer";
 import Product from "../components/Product";
 import data from "../assets/data";
 
-const listProduct_vh = data.list_products_by_category('Van_hoc').slice(0, 4);
-const listProduct_kt = data.list_products_by_category('Kinh_te').slice(0, 4);
-const listProduct_kns = data.list_products_by_category('Ky_nang_song').slice(0, 4);
-const listProduct_stn = data.list_products_by_category('Thieu_nhi').slice(0, 4);
-const listProduct_vh_dl = data.list_products_by_category('vh_dl').slice(0, 4);
-
-const categories = [
-  { key: "vh", name: "Văn học", products: listProduct_vh },
-  { key: "kt", name: "Kinh tế", products: listProduct_kt },
-  { key: "kns", name: "Kỹ năng sống", products: listProduct_kns },
-  { key: "stn", name: "Sách thiếu nhi", products: listProduct_stn },
-  { key: "vh_dl", name: "Văn hóa - Du lịch", products: listProduct_vh_dl },
-];
-
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState("vh");
   const [activeCategoryNew, setActiveCategoryNew] = useState("vh");
 
+  const listProduct_vh = data.list_products_by_category('Van_hoc').slice(0, 4);
+  const listProduct_kt = data.list_products_by_category('Kinh_te').slice(0, 4);
+  const listProduct_kns = data.list_products_by_category('Ky_nang_song').slice(0, 4);
+  const listProduct_stn = data.list_products_by_category('Thieu_nhi').slice(0, 4);
+  const listProduct_vh_dl = data.list_products_by_category('vh_dl').slice(0, 4);
+
+  const categories = [
+    { key: "vh", name: "Văn học", products: listProduct_vh },
+    { key: "kt", name: "Kinh tế", products: listProduct_kt },
+    { key: "kns", name: "Kỹ năng sống", products: listProduct_kns },
+    { key: "stn", name: "Sách thiếu nhi", products: listProduct_stn },
+    { key: "vh_dl", name: "Văn hóa - Du lịch", products: listProduct_vh_dl },
+  ];
   const banners = [
     require("../assets/images/Banners/Banner1.jpg"),
     require("../assets/images/Banners/Banner2.jpg"),

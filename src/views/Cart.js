@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useCart } from "../context/CartContext";
+import { usePay } from "../context/PayContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cart, setCart } = useCart();
   const navigate = useNavigate();
+  const { setSelectedItems } = usePay();
 
   const handleQuantityChange = useCallback(
     (index, newQuantity) => {
@@ -140,7 +142,18 @@ const Cart = () => {
                 <p className="text-2xl font-bold">
                   Tổng thanh toán: {totalAmount.toLocaleString()} đ
                 </p>
-                <button className="bg-cam p-4 text-2xl text-white rounded-lg" onClick={() => { navigate('/pay') }}>Thanh Toán</button>
+                <button
+                  className="bg-cam p-4 text-2xl text-white rounded-lg"
+                  onClick={() => {
+                    const selectedItems = cart.filter((item) => item.selected);
+                    const remainingItems = cart.filter((item) => !item.selected);
+                    setCart(remainingItems);
+                    setSelectedItems(selectedItems);
+                    navigate("/pay");
+                  }}
+                >
+                  Thanh Toán
+                </button>
               </div>
             </div>
           </>

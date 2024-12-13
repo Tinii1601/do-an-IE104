@@ -16,24 +16,15 @@ class Product {
     this.nam_xb = nam_xb;
   }
 
-  getDiscountedPrice() {
-    return this.gia * (1 - this.sale / 100);
-  }
-
   isCategory(category) {
     return this.the_loai === category;
   }
 }
 
-// User class
 class User {
-  constructor(id, username, password) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-  }
-  authenticate(password) {
-    return this.password === password;
+  constructor(username, password) {
+    this.username = username
+    this.password = password
   }
 }
 
@@ -41,14 +32,6 @@ class Data {
   constructor() {
     this.products = [];
     this.users = [];
-  }
-
-  addProduct(product) {
-    this.products.push(product);
-  }
-
-  addUser(id, username, password) {
-    this.users.push(new User(id, username, password));
   }
 
   list_products_by_category(category) {
@@ -92,6 +75,8 @@ class Data {
 
 // Khởi tạo dữ liệu
 let data = new Data();
+
+data.users.push(new User("admin", "123"))
 // Văn học
 data.products.push(
   new Product(

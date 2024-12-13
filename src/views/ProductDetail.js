@@ -125,7 +125,34 @@ const ProductDetail = ({ products }) => {
               <ProductTabs showTab={showTab} setShowTab={setShowTab} />
               <hr className="my-5" />
               {showTab === 1 && <p>{product.mo_ta}</p>}
-              {showTab === 2 && <p>Phần thông tin chi tiết ...</p>}
+              {showTab === 2 && (<div>
+                <table>
+                  <tr>
+                    <td className="font-semibold">Nhà xuất bản</td>
+                    <td>{product.nxb}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-semibold">Tác giả</td>
+                    <td>{product.tac_gia}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-semibold">Kích thước</td>
+                    <td>{product.kich_thuoc}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-semibold">Số trang</td>
+                    <td>{product.so_trang}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-semibold">Hình thức</td>
+                    <td>{product.hinh_thuc}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-semibold">Năm xuất bản</td>
+                    <td>{product.nam_xb}</td>
+                  </tr>
+                </table>
+              </div>)}
               {showTab === 3 && (
                 <CustomerReviews comments={comments} addComment={addComment} />
               )}
@@ -133,7 +160,7 @@ const ProductDetail = ({ products }) => {
           </div>
           <div className="fixed right-16 bg-white py-4 px-8 shadow-xl rounded-3xl border border-gray-400 h-fit">
             <p className="text-xl font-bold">
-              {product.getDiscountedPrice()} đ
+              {(product.gia * (1 - product.sale / 100)).toLocaleString()} đ
             </p>
             <p className="text-xanh">Trạng thái: Còn hàng</p>
             <div className="flex gap-4 my-4">

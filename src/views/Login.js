@@ -1,5 +1,4 @@
-import React from "react";
-import "../styles/login-style.css";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
@@ -7,148 +6,68 @@ import { useNavigate } from "react-router-dom";
 import data from "../assets/data";
 
 const Login = () => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-  const XuatFormDK = () => {
-    const signin = document.getElementById("Signin");
-    const login = document.getElementById("Login");
-    const linka = document.getElementsByClassName("tab");
+    const handleSubmit = () => {
+        if (!username || !password) {
+            setErrorMessage("Vui lòng điền đầy đủ thông tin.");
+            return;
+        }
+        if (!data.users.find((user) => user.username === username)) {
+            setErrorMessage("Tên đăng nhập không tồn tại.");
+            return;
+        }
+        if (data.users.find((user) => user.username === username && user.password !== password)) {
+            setErrorMessage("Mật khẩu không chính xác.");
+            return;
+        }
+        login();
+        setErrorMessage("");
+        navigate("/");
+    };
 
-    signin.style.display = "block";
-    linka[0].style.backgroundColor = "transparent";
-    linka[0].style.border = "2px solid black";
-    linka[0].style.borderRight = "none";
-
-    login.style.display = "none";
-    linka[1].style.backgroundColor = "gray";
-    linka[1].style.border = "none";
-  };
-
-  const XuatFormDN = () => {
-    const signin = document.getElementById("Signin");
-    const login = document.getElementById("Login");
-    const linka = document.getElementsByClassName("tab");
-
-    signin.style.display = "none";
-    linka[0].style.backgroundColor = "gray";
-    linka[0].style.border = "none";
-
-    login.style.display = "block";
-    linka[1].style.backgroundColor = "transparent";
-    linka[1].style.border = "2px solid black";
-    linka[1].style.borderLeft = "none";
-  };
-
-  const handleBlur = (event) => {
-    const input = event.target;
-    const errorSpan = input.nextElementSibling;
-    if (!input.value.trim()) {
-      input.style.border = "2px solid red";
-      if (errorSpan) {
-        errorSpan.innerHTML = `Mục <b>${input.name}</b> không được để trống!!!!!`;
-        errorSpan.style.color = "red";
-        errorSpan.style.display = "block"
-      }
-    }
-  };
-
-  const handleFocus = (event) => {
-    const input = event.target;
-    const errorSpan = input.nextElementSibling;
-    input.style.border = "2px solid black";
-    if (errorSpan) {
-      errorSpan.textContent = "";
-      errorSpan.style.display = "none"
-    }
-  };
-
-  const checkSignIn = () => {
-  }
-
-  const handleLogin = () => {
-    login();
-    alert("Đăng nhập thành công!");
-    navigate("/");
-  };
-
-
-  return (
-    <>
-      <Header />
-      <div class="login-container">
-        <div class="link">
-          <a id="dangnhap" href="#" class="tab" onClick={XuatFormDN}>
-            Đăng nhập
-          </a>
-          <a id="dangky" href="#" class="tab" onClick={XuatFormDK}>
-            Đăng ký
-          </a>
-        </div>
-        <div id="Login" class="divForm">
-          <form name="formLogin">
-            <div class="Nhap">
-              <label>Tên đăng nhập</label>
-              <input type="text" name="Tên đăng nhập" required onBlur={handleBlur} onFocus={handleFocus} />
-              <span></span>
-              <label>Mật khẩu</label>
-              <input type="password" name="Mật khẩu" id="" required onBlur={handleBlur} onFocus={handleFocus} />
-              <span></span>
-              <a href="#" class="forgot-password">
-                Quên mật khẩu?
-              </a>
+    return (
+        <>
+            <Header />
+            <div className=" bg-white w-1/2 my-10 mx-1/4 p-10 rounded-xl">
+                <div className="w-1/2 my-10 mx-1/4 border-gray-200 border rounded-full">
+                    <button type="button" className="bg-gray-200 p-4 w-1/2 rounded-l-full"
+                        onClick={() => navigate("/login")}
+                    >Đăng nhập</button>
+                    <button type="button" className="p-4 w-1/2 rounded-r-full"
+                        onClick={() => navigate("/signin")}
+                    >Đăng ký</button>
+                </div>
+                <label className="block text-sm font-medium my-2 w-1/2 mx-1/4">Tên đăng nhập</label>
+                <input
+                    type="text"
+                    placeholder="Tên đăng nhập"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-1/2 mx-1/4 border rounded-full px-4 py-2" />
+                <label className="block text-sm font-medium my-2 w-1/2 mx-1/4">Mật khẩu</label>
+                <input
+                    type="password"
+                    placeholder="Mật khẩu"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-1/2 mx-1/4 border rounded-full px-4 py-2" />
+                <a href="#" className="block text-right text-sm font-medium my-2 w-1/2 mx-1/4">Quên mật khẩu?</a>
+                {errorMessage && (
+                    <p className="text-red-500 text-center">{errorMessage}</p>
+                )}
+                <button type="button" className="block bg-gray-200 p-4 w-1/4 my-10 mx-3/8 rounded-full"
+                    onClick={handleSubmit}
+                >Đăng nhập</button>
             </div>
-            <div class="submition">
-              <input type="button" value="Đăng nhập" onClick={handleLogin} />
-            </div>
-          </form>
-        </div>
-        <div id="Signin" class="divForm">
-          <form name="formSignin">
-            <div class="Nhap">
-              <label>Tên đăng nhập</label>
-              <input
-                id="dk_username"
-                type="text"
-                class="Username"
-                name="Tên đăng nhập"
-                required
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
-              <span></span>
-              <label>Mật khẩu</label>
-              <input
-                id="dk_password"
-                type="password"
-                name="Mật khẩu"
-                class="Password"
-                required
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
-              <span></span>
-              <label>Nhập lại mật khẩu</label>
-              <input
-                id="dk_repassword"
-                type="password"
-                name="Nhập lại mật khẩu"
-                class="Password"
-                required
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
-              <span></span>
-            </div>
-            <div class="submition">
-              <input type="button" value="Đăng ký" onclick={checkSignIn()} />
-            </div>
-          </form>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    );
+
 }
 
 export default Login;

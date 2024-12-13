@@ -8,7 +8,7 @@ const Header = () => {
   const [showFolderOptions, setShowFolderOptions] = useState(false);
   const [showAccountOptions, setShowAccountOptions] = useState(false);
   const { cart } = useCart(); // Truy cập giỏ hàng từ CartContext
-  const { isLoggedIn } = useAuth(); // Truy cập trạng thái đăng nhập từ AuthContext
+  const { isLoggedIn, logout } = useAuth(); // Truy cập trạng thái đăng nhập từ AuthContext
   const navigate = useNavigate();
 
   // Tính tổng số lượng sản phẩm trong giỏ hàng
@@ -123,32 +123,47 @@ const Header = () => {
               </span>
             </p>
           </div>
-          {showAccountOptions && <div className="absolute w-48 bg-white shadow-lg">
-            <Link to="/account">
-              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
-                Thông tin tài khoản
-              </div>
-            </Link>
-            <Link to="/account">
-              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
-                Đơn hàng của tôi
-              </div>
-            </Link>
-            <Link to="/account">
-              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
-                Đổi mật khẩu
-              </div>
-            </Link>
-            <Link to="/login">
-              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
-                Đăng nhập
-              </div>
-            </Link>
-            <Link to="/login">
-              <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
-                Đăng ký
-              </div>
-            </Link>
+          {showAccountOptions && <div className="absolute w-48 ml-4 bg-white shadow-lg">
+            {isLoggedIn && (
+              <>
+                <Link to="/account">
+                  <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                    Thông tin tài khoản
+                  </div>
+                </Link>
+                <Link to="/favor">
+                  <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                    Sản phẩm yêu thích
+                  </div>
+                </Link>
+                <Link to="/change-password">
+                  <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                    Đổi mật khẩu
+                  </div>
+                </Link>
+                <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => { logout() }}
+                >
+                  Thoát
+                </div>
+              </>
+            )
+            }
+            {!isLoggedIn && (
+              <>
+                <Link to="/login">
+                  <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                    Đăng nhập
+                  </div>
+                </Link>
+                <Link to="/signin">
+                  <div className="text-xl p-2 hover:bg-gray-200 cursor-pointer">
+                    Đăng ký
+                  </div>
+                </Link>
+              </>
+            )
+            }
           </div>
           }
         </div>

@@ -114,9 +114,9 @@ const Cart = () => {
                         min="1"
                       />
                     </td>
-                    <td className="p-2">{(item.gia * (1.0 - item.sale / 100.0)).toLocaleString()} VND</td>
+                    <td className="p-2">{(item.gia * (1.0 - item.sale / 100.0)).toLocaleString()} đ</td>
                     <td className="p-2">
-                      {(item.gia * (1.0 - item.sale / 100.0) * item.quantity).toLocaleString()} VND
+                      {(item.gia * (1.0 - item.sale / 100.0) * item.quantity).toLocaleString()} đ
                     </td>
                     <td className="p-2">
                       <button
@@ -138,7 +138,7 @@ const Cart = () => {
                 placeholder="Nhập ghi chú tại đây ... " />
               <div className="mt-5 text-right">
                 <p className="text-2xl font-bold">
-                  Tổng thanh toán: {totalAmount.toLocaleString()} VND
+                  Tổng thanh toán: {totalAmount.toLocaleString()} đ
                 </p>
                 <button className="bg-cam p-4 text-2xl text-white rounded-lg" onClick={() => { navigate('/pay') }}>Thanh Toán</button>
               </div>
